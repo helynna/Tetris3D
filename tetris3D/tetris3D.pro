@@ -33,10 +33,14 @@ CONFIG   -= app_bundle
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    piece.cpp \
+    grille.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    piece.h \
+    grille.h
 
 FORMS += \
         mainwindow.ui
