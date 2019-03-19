@@ -35,12 +35,26 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     piece.cpp \
-    grille.cpp
+    grille.cpp \
+    piececarre.cpp \
+    piecebaton.cpp \
+    piecelambda.cpp \
+    piecel_inverse.cpp \
+    piecebiais.cpp \
+    piecebiais_inverse.cpp \
+    piecet_bloc.cpp
 
 HEADERS += \
         mainwindow.h \
     piece.h \
-    grille.h
+    grille.h \
+    piececarre.h \
+    piecebaton.h \
+    piecelambda.h \
+    piecel_inverse.h \
+    piecebiais.h \
+    piecebiais_inverse.h \
+    piecet_bloc.h
 
 FORMS += \
         mainwindow.ui

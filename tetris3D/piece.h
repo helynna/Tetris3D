@@ -16,16 +16,6 @@ public:
 };
 
 
-class PieceCarre: public Piece
-{
-private:
-
-
-public:
-    PieceCarre();
-};
-
-
 class PieceT_bloc: public Piece
 {
 private:
