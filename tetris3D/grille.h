@@ -1,6 +1,8 @@
 #ifndef GRILLE_H
 #define GRILLE_H
 
+#include "piece.h"
+
 #define nbColonne 10
 #define nbLigne 20
 
@@ -16,7 +18,12 @@ public:
     Grille();
     bool isFull(int numLigne);
     void supprimerLigne(int numLigne);
+    void supprimerLigneComplete();
     int sommeLigne(int numLigne);
+
+    bool testDescente(Bloc type,int x, int y, int rotation);//{0,90,180,270};
+    bool testGrille(int x, int y);
+
 
 
 
