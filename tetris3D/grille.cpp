@@ -59,11 +59,12 @@ int Grille::sommeLigne(int numLigne)
 
 }
 
-bool Grille::testDescente(Bloc type, int x, int y)
+bool Grille::testDescente(Bloc type, int x, int y,int rotation)//{0,90,180,270};
 {
     //enum Bloc{Carre, T_bloc, Baton, Lambda, L_inverse, Biais, Biais_inverse};
     switch(type){
     case Carre:
+
         break;
 
     case T_bloc:
@@ -85,5 +86,14 @@ bool Grille::testDescente(Bloc type, int x, int y)
         break;
 
 
+    }
+}
+
+bool Grille::testGrille(int x, int y)
+{
+    if(grille[x-1][y]!=0){
+        return false;
+    }else{
+        return true;
     }
 }

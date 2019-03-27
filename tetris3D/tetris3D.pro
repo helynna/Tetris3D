@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui opengl widgets
 QT       -= gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -42,7 +42,9 @@ SOURCES += \
     piecel_inverse.cpp \
     piecebiais.cpp \
     piecebiais_inverse.cpp \
-    piecet_bloc.cpp
+    piecet_bloc.cpp \
+    jeu.cpp \
+    myglwidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -54,10 +56,11 @@ HEADERS += \
     piecel_inverse.h \
     piecebiais.h \
     piecebiais_inverse.h \
-    piecet_bloc.h
+    piecet_bloc.h \
+    jeu.h \
+    myglwidget.h
 
-FORMS += \
-        mainwindow.ui
+FORMS +=
 
 
 LIBS += -L$$(OPENCV_DIR)\lib \
@@ -69,6 +72,17 @@ LIBS += -L$$(OPENCV_DIR)\lib \
     -lopencv_objdetect2413
 
 
+win32 {
+    win32-msvc* {
+        LIBS     += opengl32.lib glu32.lib
+        DEFINES  += _WIN32
+    } else {
+        LIBS     += -lopengl32 -lglu32
+    }
+}
+unix:!macx {
+        LIBS     += -lGL -lGLU
+}
 
 
 # Default rules for deployment.
