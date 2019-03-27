@@ -21,7 +21,7 @@ public:
     void supprimerLigneComplete();
     int sommeLigne(int numLigne);
 
-    bool testDescente(Bloc type,int x, int y, int rotation);//{0,90,180,270};
+    /*bool testDescente(Bloc type,int x, int y, int rotation);//{0,90,180,270};*/
     bool testGrille(int x, int y);
 
 

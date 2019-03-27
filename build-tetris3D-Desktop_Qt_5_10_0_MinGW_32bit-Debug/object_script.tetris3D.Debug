@@ -1,0 +1,16 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\piece.o
+./debug\grille.o
+./debug\piececarre.o
+./debug\piecebaton.o
+./debug\piecelambda.o
+./debug\piecel_inverse.o
+./debug\piecebiais.o
+./debug\piecebiais_inverse.o
+./debug\piecet_bloc.o
+./debug\gamewidget.o
+./debug\camerawidget.o
+./debug\moc_mainwindow.o
+);

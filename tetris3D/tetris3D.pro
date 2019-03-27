@@ -26,6 +26,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 INCLUDEPATH +=$$(OPENCV_DIR)\..\..\include
 
+LIBS += -L$$(OPENCV_DIR)\lib \
+    -lopencv_core2413 \
+    -lopencv_highgui2413 \
+    -lopencv_imgproc2413 \
+    -lopencv_features2d2413 \
+    -lopencv_calib3d2413 \
+    -lopencv_objdetect2413
+
 
 CONFIG += c++11
 CONFIG   += console
@@ -42,7 +50,9 @@ SOURCES += \
     piecel_inverse.cpp \
     piecebiais.cpp \
     piecebiais_inverse.cpp \
-    piecet_bloc.cpp
+    piecet_bloc.cpp \
+    gamewidget.cpp \
+    camerawidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -54,7 +64,9 @@ HEADERS += \
     piecel_inverse.h \
     piecebiais.h \
     piecebiais_inverse.h \
-    piecet_bloc.h
+    piecet_bloc.h \
+    gamewidget.h \
+    camerawidget.h
 
 FORMS += \
         mainwindow.ui

@@ -1,0 +1,16 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\piece.o
+./release\grille.o
+./release\piececarre.o
+./release\piecebaton.o
+./release\piecelambda.o
+./release\piecel_inverse.o
+./release\piecebiais.o
+./release\piecebiais_inverse.o
+./release\piecet_bloc.o
+./release\gamewidget.o
+./release\camerawidget.o
+./release\moc_mainwindow.o
+);
