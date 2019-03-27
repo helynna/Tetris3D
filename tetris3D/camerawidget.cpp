@@ -43,12 +43,37 @@ CameraWidget::CameraWidget(QWidget* parent):QGraphicsView(parent), capture{new V
                         for (Rect r: fists)
                         {
                             scene.addRect(r.x,r.y,r.width,r.height);
+
                         }
 
+                        if (fists.size()<2)
+                        {
+                           if (!pos_R.empty()&&compteur>5)
+                           {
+                               if( pos_R[0].x-fists[0].x<fist[0].width)
+                               {
+                                   compteur=0;
+                                    pos_R[0]=fists[0];
+                               }
+                               if (pos_R[1].x-fists[0].x<fist[0].width)
+                               {
+                                    pos_R[1]=fists[0];
+                                    compteur=0;
+                               }
+                           }
+                        }
+                        else
+                        {
+                            if (compteur>5)
+                            {
+                                pos_R=fists;
+                                compteur=0;
+                            }
+                        }
 
                     }
 
-
+                    compteur++;
 
 
 
