@@ -1,67 +1,91 @@
 #include "piece.h"
+#include "piecebaton.h"
+#include "piecebiais.h"
+#include "piecebiais_inverse.h"
+#include "piececarre.h"
+#include "piecel_inverse.h"
+#include "piecelambda.h"
+#include "piecet_bloc.h"
+
 
 Piece::Piece()
 {
-    //switch
-
 
 
 }
 
-//int Piece::piece[7][4][2][4]={};
+void Piece::rotateRight()
+{    
 
-PieceCarre::PieceCarre()
+    if(angle+=90>270){
+        angle = 0;
+    }
+
+}
+
+void Piece::rotateLeft()
 {
-    piece[0][0]=1;
-    piece[0][1]=1;
-    piece[1][0]=1;
-    piece[1][1]=1;
+
+    if(angle-=90<0){
+        angle = 360;
+    }
 }
 
-PieceT_bloc::PieceT_bloc()
+void Piece::getActualShape(std::vector<std::vector<int> > shape)
 {
-    piece[0][0]=1;
-    piece[0][1]=1;
-    piece[0][2]=1;
-    piece[1][1]=1;
+    switch (angle){
+
+        case 0:
+            for(int i=0;i<2;i++){
+                for(int j=0;j<4;j++){
+                   shape[i][j]=piece[i][j];
+                }
+
+            }
+
+            break;
+
+        case 90:
+            for(int i=0;i<2;i++){
+                for(int j=0;j<4;j++){
+                   //shape[i][j]=piece[j][1-i];
+                   shape[j][1-i]=piece[i][j];
+                }
+
+            }
+            break;
+
+        case 180:
+            for(int i=0;i<2;i++){
+                for(int j=0;j<4;j++){
+                   //shape[i][j]=piece[1-i][3-j];
+                   shape[1-i][3-j]=piece[i][j];
+                }
+
+            }
+            break;
+
+        case 270:
+        for(int i=0;i<2;i++){
+            for(int j=0;j<4;j++){
+               //shape[i][j]=piece[3-j][i];
+               shape[3-j][i]==piece[i][j];
+            }
+
+        }
+            break;
+    }
+
 }
 
-PieceBaton::PieceBaton()
+void Piece::moveRight(int abs)
 {
-    piece[0][0]=1;
-    piece[0][1]=1;
-    piece[0][2]=1;
-    piece[0][3]=1;
+
+
 }
 
-PieceLambda::PieceLambda()
-{
-    piece[0][0]=1;
-    piece[0][1]=1;
-    piece[0][2]=1;
-    piece[1][0]=1;
-}
 
-PieceL_inverse::PieceL_inverse()
-{
-    piece[0][0]=1;
-    piece[0][1]=1;
-    piece[0][2]=1;
-    piece[1][2]=1;
-}
 
-PieceBiais::PieceBiais()
-{
-    piece[0][0]=1;
-    piece[0][1]=1;
-    piece[1][1]=1;
-    piece[1][2]=1;
-}
 
-PieceBiais_inverse::PieceBiais_inverse()
-{
-    piece[0][2]=1;
-    piece[0][1]=1;
-    piece[1][1]=1;
-    piece[1][0]=1;
-}
+
+

@@ -32,6 +32,12 @@ protected:
     // Fonction d'affichage
     void paintGL();
 
+    //Dessiner la grille de fond
+    void paintLinesGL();
+
+    //Dessiner les pieces
+    void paintCube(float x, float y,int style, int Couleur[8][3]);
+
     // Fonction de gestion d'interactions clavier
     void keyPressEvent(QKeyEvent * event);
 
@@ -42,6 +48,11 @@ private:
     // Timer d'animation
     float m_TimeElapsed { 0.0f };
     QTimer m_AnimationTimer;
+
+
+    int phi=90;
+    int teta=45;
+    float dist=45;
 
     float timeSlow=1.0f/12.0f;
 };

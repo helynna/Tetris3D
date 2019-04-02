@@ -33,7 +33,6 @@ CONFIG   -= app_bundle
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
     piece.cpp \
     grille.cpp \
     piececarre.cpp \
@@ -47,7 +46,6 @@ SOURCES += \
     myglwidget.cpp
 
 HEADERS += \
-        mainwindow.h \
     piece.h \
     grille.h \
     piececarre.h \

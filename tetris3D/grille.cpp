@@ -2,6 +2,27 @@
 
 Grille::Grille()
 {
+    //rouge
+    Couleur_[0][0]=255;
+    //vert
+    Couleur_[1][1]=255;
+    //bleu
+    Couleur_[2][2]=255;
+    //orange
+    Couleur_[3][0]=255;
+    Couleur_[3][1]=165;
+    //Couleur_[3][0]=255;
+    //jaune
+    Couleur_[4][0]=255;
+    Couleur_[4][1]=255;
+    //cyan
+    Couleur_[5][1]=255;
+    Couleur_[5][2]=255;
+    //violet
+    Couleur_[6][0]=255;
+    Couleur_[6][2]=255;
+
+
 
 }
 
@@ -9,8 +30,9 @@ bool Grille::isFull(int numLigne)
 {
     bool res=true;
     for(int i=0;i<nbColonne;i++){
-        if(grille[numLigne][i]!=0){
+        if(grille[numLigne][i]==7){
             res=false;
+            break;
         }
 
     }
@@ -19,7 +41,7 @@ bool Grille::isFull(int numLigne)
 
 void Grille::supprimerLigne(int numLigne)
 {   int i=numLigne;
-    while(sommeLigne(i-1)!=0)
+    while(sommeLigne(i-1)!=70)
     {
         for(int j=0;j<nbColonne;j++){
             grille[i][j]=grille[i-1][j];
@@ -38,7 +60,7 @@ void Grille::supprimerLigne(int numLigne)
 void Grille::supprimerLigneComplete()
 {
     for(int i=0;i<nbLigne;i++){
-        if(sommeLigne(i)!=0){
+        if(sommeLigne(i)!=70){
             if(isFull(i)){
                 supprimerLigne(i);
             }
@@ -61,28 +83,20 @@ int Grille::sommeLigne(int numLigne)
 
 bool Grille::testDescente(Bloc type, int x, int y,int rotation)//{0,90,180,270};
 {
-    //enum Bloc{Carre, T_bloc, Baton, Lambda, L_inverse, Biais, Biais_inverse};
-    switch(type){
-    case Carre:
+    //int shape[][];
+
+    switch(rotation){
+    case 0:
 
         break;
 
-    case T_bloc:
+    case 90:
         break;
 
-    case Baton:
+    case 180:
         break;
 
-    case Lambda:
-        break;
-
-    case L_inverse:
-        break;
-
-    case Biais:
-        break;
-
-    case Biais_inverse:
+    case 270:
         break;
 
 

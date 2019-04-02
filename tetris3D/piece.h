@@ -1,6 +1,14 @@
 #ifndef PIECE_H
 #define PIECE_H
 
+#include <GL/glu.h>
+#include <QColor>
+#include <string.h>
+#include <vector>
+#include <QApplication>
+#include <QImage>
+#include <math.h>
+
 enum Bloc{Carre, T_bloc, Baton, Lambda, L_inverse, Biais, Biais_inverse};
 
 class Piece
@@ -12,77 +20,32 @@ protected:
     int piece[2][4]={};
     int angle=0;
     Bloc type_;
+    int x;
+    int y;
+   // std::vector<float> Couleur_;
+    int typeCouleur_;
+    void setX(int abs) {x=abs;}
+    void setY(int ord) {y=ord;}
 
 public :
         Piece();
-
-};
-
-
-class PieceT_bloc: public Piece
-{
-private:
-
-
-public:
-    PieceT_bloc();
-};
-
-
-class PieceBaton: public Piece
-{
-private:
+        void rotateRight();
+        void rotateLeft();
+        void getActualShape(std::vector<std::vector<int>> shape);
+        int getAngle(){return angle;
+                      }
+        template<size_t rows, size_t cols>
+        void f(int (&shape)[rows][cols]);
+        int getTypeCouleur() {return typeCouleur_;}
+        int getX() {return x;}
+        int getY() {return y;}
+        void moveRight(int abs);
+        void moveLeft(int ord);
 
 
-public:
-    PieceBaton();
 
 
 };
-
-
-class PieceLambda: public Piece
-{
-private:
-
-
-public:
-    PieceLambda();
-
-};
-
-
-class PieceL_inverse: public Piece
-{
-private:
-
-
-public:
-    PieceL_inverse();
-
-};
-
-
-class PieceBiais: public Piece
-{
-private:
-
-
-public:
-    PieceBiais();
-
-};
-
-
-class PieceBiais_inverse: public Piece
-{
-private:
-
-public:
-    PieceBiais_inverse();
-};
-
-
 
 
 

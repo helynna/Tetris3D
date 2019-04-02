@@ -1,8 +1,9 @@
 #ifndef PIECECARRE_H
 #define PIECECARRE_H
+#include "piece.h"
 
 
-class PieceCarre
+class PieceCarre:public Piece
 {
 public:
     PieceCarre();
