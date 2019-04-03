@@ -196,6 +196,7 @@ Makefile: ../tetris3D/tetris3D.pro ../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mks
 		../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mkspecs/features/qt_config.prf \
 		../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mkspecs/win32-g++/qmake.conf \
 		../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mkspecs/features/toolchain.prf \
 		../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mkspecs/features/default_pre.prf \
@@ -219,6 +220,7 @@ Makefile: ../tetris3D/tetris3D.pro ../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mks
 		../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mkspecs/features/yacc.prf \
 		../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mkspecs/features/lex.prf \
 		../tetris3D/tetris3D.pro \
+		../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/lib/Qt5OpenGL.prl \
 		../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/lib/Qt5Widgets.prl \
 		../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/lib/Qt5Gui.prl \
 		../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/lib/Qt5Core.prl
@@ -358,6 +360,7 @@ Makefile: ../tetris3D/tetris3D.pro ../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mks
 ../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mkspecs/features/qt_config.prf:
 ../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mkspecs/win32-g++/qmake.conf:
 ../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mkspecs/features/toolchain.prf:
 ../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mkspecs/features/default_pre.prf:
@@ -381,6 +384,7 @@ Makefile: ../tetris3D/tetris3D.pro ../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mks
 ../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mkspecs/features/yacc.prf:
 ../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/mkspecs/features/lex.prf:
 ../tetris3D/tetris3D.pro:
+../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/lib/Qt5OpenGL.prl:
 ../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/lib/Qt5Widgets.prl:
 ../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/lib/Qt5Gui.prl:
 ../../../../Qt/Qt5.10.0/5.10.0/mingw53_32/lib/Qt5Core.prl:

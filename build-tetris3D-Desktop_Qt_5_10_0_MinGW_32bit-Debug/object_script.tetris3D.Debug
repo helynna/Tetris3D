@@ -1,0 +1,17 @@
+INPUT(
+./debug\main.o
+./debug\piece.o
+./debug\grille.o
+./debug\piececarre.o
+./debug\piecebaton.o
+./debug\piecelambda.o
+./debug\piecel_inverse.o
+./debug\piecebiais.o
+./debug\piecebiais_inverse.o
+./debug\piecet_bloc.o
+./debug\jeu.o
+./debug\myglwidget.o
+./debug\camerawidget2.o
+./debug\gamewidget2.o
+./debug\moc_myglwidget.o
+);
