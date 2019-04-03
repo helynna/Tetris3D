@@ -20,6 +20,10 @@ private:
     QTimer timer;
     QGraphicsScene scene;
     cv::CascadeClassifier face_cascade;
+    std::vector<cv::Rect> pos_R;
+    int compteur=0;
+    bool L_H=false;
+    bool R_H=false;
 
 };
 

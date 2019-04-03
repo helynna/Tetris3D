@@ -1,7 +1,7 @@
 #include "camerawidget.h"
 #include <cstdio>
 #include <iostream>
-
+#include <QDebug>
 using namespace cv;
 using namespace std;
 
@@ -39,43 +39,88 @@ CameraWidget::CameraWidget(QWidget* parent):QGraphicsView(parent), capture{new V
                     face_cascade.detectMultiScale( frame_gray, fists, 1.1, 4, 0|CV_HAAR_SCALE_IMAGE, Size(60, 60) );
                     if (fists.size()>0)
                     {
+                        float min=5000;
+                        float max=0;
+                        Rect left;
+                        Rect Right;
                         // Draw green rectangle
                         for (Rect r: fists)
                         {
                             scene.addRect(r.x,r.y,r.width,r.height);
-
-                        }
-
-                        if (fists.size()<2)
-                        {
-                           if (!pos_R.empty()&&compteur>5)
-                           {
-                               if( pos_R[0].x-fists[0].x<fist[0].width)
-                               {
-                                   compteur=0;
-                                    pos_R[0]=fists[0];
-                               }
-                               if (pos_R[1].x-fists[0].x<fist[0].width)
-                               {
-                                    pos_R[1]=fists[0];
-                                    compteur=0;
-                               }
-                           }
-                        }
-                        else
-                        {
-                            if (compteur>5)
+                            if (r.x<min && r.x<200)
                             {
-                                pos_R=fists;
-                                compteur=0;
+                                min=r.x;
+                                left=r;
+                            }
+                            if(r.x>max&& r.x>=200)
+                            {
+                                Right=r;
+                                max=r.x;
                             }
                         }
+                        if (pos_R.empty())
+                        {
+                            pos_R.push_back(left);
+                            pos_R.push_back(Right);
+
+                        }
+
+                       else
+                        {
+                            if (fists.size()<2)
+                             {
+                                if (compteur>5)
+                                {
+                                    if(  -left.width< pos_R[0].x-left.x && pos_R[0].x-left.x<left.width &&  min!=5000)
+                                    {
+                                        compteur=0;
+                                         pos_R[0]=left;
+                                    }
+                                    if (-Right.width<pos_R[1].x-Right.x && pos_R[0].x-Right.x<Right.width && max!=0)
+                                    {
+                                         pos_R[1]=Right;
+                                         compteur=0;
+                                    }
+                                }
+                             }
+
+                             else
+                            {
+                                if (compteur>3)
+                                 {
+
+                                         pos_R[0]=left;
+                                         pos_R[1]=Right;
+                                         compteur=0;
+                                        // qDebug()<<pos_R[0].x;
+                                        // qDebug()<<pos_R[0].y;
+                                        // qDebug()<<pos_R[1].x;
+                                         //qDebug()<<pos_R[1].y;
+
+                                 }
+                             }
+
+                            if (pos_R[0].y>pos_R[1].y+pos_R[0].height)
+                                L_H=true;
+                            else
+                                L_H=false;
+                            if (pos_R[1].y>pos_R[0].y+pos_R[1].height)
+                                R_H=true;
+                            else
+                                R_H=false;
+                            if (pos_R[1].y>270 && pos_R[0].y>270)
+                                accel=true;
+                            else
+                                accel=false;
+
+                        }
+
 
                     }
 
+
                     compteur++;
-
-
+                  //  qdebug<<left.x;
 
                 update();
 

@@ -20,8 +20,12 @@ private:
     QTimer timer;
     QGraphicsScene scene;
     cv::CascadeClassifier face_cascade;
-    std::vector<Rect> pos_R;
+    std::vector<cv::Rect> pos_R;
     int compteur=0;
+    bool L_H=false;
+    bool R_H=false;
+    bool accel=false;
+
 };
 
 #endif // CAMERAWIDGET_H
