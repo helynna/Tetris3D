@@ -10,6 +10,4 @@ release/piecebiais_inverse.o
 release/piecet_bloc.o
 release/jeu.o
 release/myglwidget.o
-release/camerawidget2.o
-release/gamewidget2.o
 release/moc_myglwidget.o

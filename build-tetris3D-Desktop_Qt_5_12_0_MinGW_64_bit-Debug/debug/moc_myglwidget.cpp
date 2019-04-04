@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MyGLWidget_t {
-    QByteArrayData data[1];
-    char stringdata0[11];
+    QByteArrayData data[7];
+    char stringdata0[57];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -31,10 +31,17 @@ struct qt_meta_stringdata_MyGLWidget_t {
     )
 static const qt_meta_stringdata_MyGLWidget_t qt_meta_stringdata_MyGLWidget = {
     {
-QT_MOC_LITERAL(0, 0, 10) // "MyGLWidget"
+QT_MOC_LITERAL(0, 0, 10), // "MyGLWidget"
+QT_MOC_LITERAL(1, 11, 10), // "rotateLeft"
+QT_MOC_LITERAL(2, 22, 0), // ""
+QT_MOC_LITERAL(3, 23, 11), // "rotateRight"
+QT_MOC_LITERAL(4, 35, 6), // "goLeft"
+QT_MOC_LITERAL(5, 42, 7), // "goRight"
+QT_MOC_LITERAL(6, 50, 6) // "goDown"
 
     },
-    "MyGLWidget"
+    "MyGLWidget\0rotateLeft\0\0rotateRight\0"
+    "goLeft\0goRight\0goDown"
 };
 #undef QT_MOC_LITERAL
 
@@ -44,21 +51,44 @@ static const uint qt_meta_data_MyGLWidget[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       0,    0, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
 
+ // slots: name, argc, parameters, tag, flags
+       1,    0,   39,    2, 0x0a /* Public */,
+       3,    0,   40,    2, 0x0a /* Public */,
+       4,    0,   41,    2, 0x0a /* Public */,
+       5,    0,   42,    2, 0x0a /* Public */,
+       6,    0,   43,    2, 0x0a /* Public */,
+
+ // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+
        0        // eod
 };
 
 void MyGLWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    Q_UNUSED(_o);
-    Q_UNUSED(_id);
-    Q_UNUSED(_c);
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        MyGLWidget *_t = static_cast<MyGLWidget *>(_o);
+        Q_UNUSED(_t)
+        switch (_id) {
+        case 0: _t->rotateLeft(); break;
+        case 1: _t->rotateRight(); break;
+        case 2: _t->goLeft(); break;
+        case 3: _t->goRight(); break;
+        case 4: _t->goDown(); break;
+        default: ;
+        }
+    }
     Q_UNUSED(_a);
 }
 
@@ -88,6 +118,17 @@ void *MyGLWidget::qt_metacast(const char *_clname)
 int MyGLWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QGLWidget::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 5)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 5;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 5)
+            *reinterpret_cast<int*>(_a[0]) = -1;
+        _id -= 5;
+    }
     return _id;
 }
 QT_WARNING_POP

@@ -15,7 +15,7 @@ class Jeu
 {  
 private:
     unsigned int points = 0;
-    Piece *tetrimino;
+    Piece *tetrimino=nullptr;
     Grille* board_;
     int Couleur_[8][3]={
         {255, 0, 0},
