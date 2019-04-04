@@ -32,7 +32,7 @@ public :
         Piece();
         void rotateRight();
         void rotateLeft();
-        void getActualShape(std::vector<std::vector<int>> shape);
+        void getActualShape(std::vector<std::vector<int>>& shape);
         int getAngle(){return angle;}
 
         //template<size_t rows, size_t cols>
@@ -40,10 +40,10 @@ public :
         int getTypeCouleur() {return typeCouleur_;}
         int getX() {return x;}
         int getY() {return y;}
-        void moveRight(int abs);
-        void moveLeft(int ord);
-        void moveDown() {x+=1;}
-        void moveUp() {x-=1;}; // A delete à la fin des tests
+        void moveRight();
+        void moveLeft();
+        void moveDown() {y+=1;}
+        void moveUp() {y-=1;}; // A delete à la fin des tests
 
 
 

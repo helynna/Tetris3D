@@ -23,6 +23,7 @@ int main(int argc, char *argv[])
     // Creation du widget opengl
     MyGLWidget glWidget;
     glWidget.show();
+    glWidget.move(0, 0);
 
     // Execution de l'application QT
     return app.exec();

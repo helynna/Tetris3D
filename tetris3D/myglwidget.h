@@ -50,9 +50,15 @@ protected:
     //Fonction de gestion d'interactions souris
     void mousePressEvent(QMouseEvent * event);
 
+public slots:
+    void rotateLeft();
+    void rotateRight();
+    void goLeft();
+    void goRight();
+    void goDown();
+
 private:
     // Timer d'animation
-    Grille *board;
     Jeu* game;
 
     float m_TimeElapsed { 0.0f };

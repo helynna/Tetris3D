@@ -19,13 +19,13 @@ public:
     Grille();
     bool isFull(int numLigne);
     void supprimerLigne(int numLigne);
-    void supprimerLigneComplete();
+    int supprimerLigneComplete();
     int sommeLigne(int numLigne);
 
     bool testDescente(Bloc type,int x, int y, int rotation);//{0,90,180,270};
     bool testGrille(int x, int y);
     //void getCouleur(int couleur[3], int shape);
-    int getIndiceGrille(int x, int y) {return grille[x][y];}
+    int getIndiceGrille(int x, int y) {return grille[y][x];}
     void addTetrimino(int x, int y, int shape);
 
 

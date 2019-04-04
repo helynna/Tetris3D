@@ -25,6 +25,14 @@ Grille::Grille()
 
 */
 
+    for(int i = 0; i < nbLigne; i++)
+    {
+        for(int j = 0; j < nbColonne; j++)
+        {
+            grille[i][j] = 7;
+        }
+    }
+
 }
 
 bool Grille::isFull(int numLigne)
@@ -58,16 +66,18 @@ void Grille::supprimerLigne(int numLigne)
 
 }
 
-void Grille::supprimerLigneComplete()
+int Grille::supprimerLigneComplete()
 {
+    int t = 0;
     for(int i=0;i<nbLigne;i++){
         if(sommeLigne(i)!=70){
             if(isFull(i)){
                 supprimerLigne(i);
+                t++;
             }
         }
     }
-
+    return t;
 
 }
 
@@ -115,8 +125,8 @@ bool Grille::testGrille(int x, int y)
 
 void Grille::addTetrimino(int x, int y, int shape)
 {
-    if(x<nbLigne && y<nbColonne){
-        grille[x][y] = shape;
+    if(y<nbLigne && x<nbColonne){
+        grille[y][x] = shape;
     }
 
 

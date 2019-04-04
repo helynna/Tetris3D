@@ -24,13 +24,14 @@ MyGLWidget::MyGLWidget(QWidget * parent) : QGLWidget(parent)
 
     // Connexion du timer
     connect(&m_AnimationTimer,  &QTimer::timeout, [&] {
-        m_TimeElapsed += timeSlow;
+        m_TimeElapsed += 1;
+        game->faireDescendre();
         updateGL();
     });
 
-    m_AnimationTimer.setInterval(10);
+    m_AnimationTimer.setInterval(200);
     m_AnimationTimer.start();
-    board = new Grille();
+    game = new Jeu();
 
 }
 
@@ -92,8 +93,12 @@ void MyGLWidget::paintGL()
     gluLookAt(5,-3,10,2.5f,1.5f,0,0,1,0);
 
     paintLinesGL();
-    game->creationPieceAleatoire();
+    paintBoard();
     paintTetrimino();
+
+    glColor3f(1,1,1);
+
+    renderText(30, 30, QString::number(game->compterPoints()));
 
 }
 
@@ -124,8 +129,11 @@ void MyGLWidget::paintLinesGL()
 void MyGLWidget::paintCube(float x, float y,int Couleur[3])
 //void MyGLWidget::paintCube(float x, float y,int style, int Couleur[8][3])
 {
+    x /= 2;
+    y /= 2;
+
     glBegin(GL_QUADS);
-    glColor3f(Couleur[0],Couleur[1],Couleur[2]);
+    glColor3ub(Couleur[0],Couleur[1],Couleur[2]);
     //Face du dessous
     glVertex3f(x,y,0);
     glVertex3f(x+0.5,y,0);
@@ -140,7 +148,7 @@ void MyGLWidget::paintCube(float x, float y,int Couleur[3])
 
     //Face de droite
     glVertex3f(x+0.5,y,0);
-    glVertex3f(x+0.5,+0.5,0);
+    glVertex3f(x+0.5,y+0.5,0);
     glVertex3f(x+0.5,y+0.5,0.5);
     glVertex3f(x+0.5,y,0.5);
 
@@ -175,10 +183,10 @@ void MyGLWidget::paintTetrimino()
     game->getActualShapeTetrimino(shape);
     game->getPosTetrimino(pos);
 
-    for(int i=0;i<shape.front().size();i++){
-        for(int j=0;j<shape.size();j++){
+    for(int i=0;i<shape.size();i++){
+        for(int j=0;j<shape.front().size();j++){
             if(shape[i][j]==1){
-                paintCube(pos[0]+i,pos[1]+j,Couleur);//Si j'ai une erreur d'affichage, c'est ici qu'elle va être à cause du double vector
+                paintCube(pos[0]+i,20 -pos[1]-j,Couleur);//Si j'ai une erreur d'affichage, c'est ici qu'elle va être à cause du double vector
             }
 
         }
@@ -195,10 +203,10 @@ void MyGLWidget::paintBoard()
         for(int j=9;j>=0;j--){
 
             if(game->doSumLine(i)!=70){
-                indice=game->getIndiceInGrille(i,j);
+                indice=game->getIndiceInGrille(j,i);
                 if(indice!=7){
                     game->getCouleur(Couleur,indice);
-                    paintCube(i,j,Couleur);
+                    paintCube(j,19- i,Couleur);
 
                 }
             }
@@ -234,23 +242,31 @@ void MyGLWidget::keyPressEvent(QKeyEvent * event)
             break;
 
        case Qt::Key_Right:
-
+            goRight();
         break;
 
        case Qt::Key_D:
             phi++;
            break;
 
-       case Qt::Key_Left:
+        case Qt::Key_Left:
+             goLeft();
+         break;
 
+        case Qt::Key_A:
+             rotateLeft();
+         break;
 
-        break;
+        case Qt::Key_P:
+             rotateRight();
+         break;
+
        case Qt::Key_Q:
             phi--;
            break;
 
        case Qt::Key_Down:
-        game->faireDescendre();
+        goDown();
 
         break;
        case Qt::Key_S:
@@ -301,4 +317,29 @@ void MyGLWidget::keyPressEvent(QKeyEvent * event)
 void MyGLWidget::mousePressEvent(QMouseEvent *event)
 {
 
+}
+
+void MyGLWidget::rotateLeft()
+{
+    game->tournerPieceGauche();
+}
+
+void MyGLWidget::rotateRight()
+{
+    game->tournerPieceDroite();
+}
+
+void MyGLWidget::goLeft()
+{
+    game->allerAGauche();
+}
+
+void MyGLWidget::goRight()
+{
+    game->allerADroite();
+}
+
+void MyGLWidget::goDown()
+{
+    game->faireDescendre();
 }
