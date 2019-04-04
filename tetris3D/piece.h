@@ -42,6 +42,8 @@ public :
         int getY() {return y;}
         void moveRight(int abs);
         void moveLeft(int ord);
+        void moveDown() {x+=1;}
+        void moveUp() {x-=1;}; // A delete à la fin des tests
 
 
 

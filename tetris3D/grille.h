@@ -26,6 +26,7 @@ public:
     bool testGrille(int x, int y);
     //void getCouleur(int couleur[3], int shape);
     int getIndiceGrille(int x, int y) {return grille[x][y];}
+    void addTetrimino(int x, int y, int shape);
 
 
 

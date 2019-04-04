@@ -37,6 +37,7 @@ public:
      void allerADroite();
      void descenteRapide();
      bool peutDescendre(std::vector<std::vector<int>> shape,int pos[2]);
+     void faireDescendre();
 
     //Concernant la grille
      void getCouleur(int couleur[3], int shape);
@@ -49,6 +50,7 @@ public:
      void testerGameOver();//On teste si la grille est complète ou si ce n'est pas le cas
      void compterPoints();
      void placerTetrimino();//on fait en sorte que la piece soit fixée dans le tableau de la grille
+     void faireTournerTour();
 
 };
 

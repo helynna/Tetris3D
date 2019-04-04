@@ -51,6 +51,20 @@ void Jeu::creationPieceAleatoire()
 
 void Jeu::placerTetrimino()
 {
+    std::vector<std::vector<int>> shape;
+    int pos[2]={};
+    getPosTetrimino(pos);
+    getActualShapeTetrimino(shape);
+    int color;
+    color=tetrimino->getTypeCouleur();
+    if(!peutDescendre(shape,pos)){
+        for(int i=0;i<shape.front().size();i++){
+            for(int j=0;j<shape.size();j++){
+                board_->addTetrimino(pos[0]+i, pos[1]+j,color);
+            }
+        }
+        newTetrimino=true;
+    }
 
 
 
@@ -85,7 +99,7 @@ bool Jeu::peutDescendre(std::vector<std::vector<int>> shape,int pos[2])
     if(pos[0]==18){
         for(int j=0;j<shape.size();j++){
             if(shape[shape.front().size()-1][j]==1){
-                res=false;
+                return false;
                 //pos[0]+i,pos[1]+j)
             }
 
@@ -93,20 +107,134 @@ bool Jeu::peutDescendre(std::vector<std::vector<int>> shape,int pos[2])
         }
     }
     else{//On est pas à la dernière ligne
-        for(int j=0;j<shape.size();j++){
-            if(shape[shape.front().size()-1][j]==1){
-                if(){
-                   return false;
-                }
-                //Ici il faut prendre la dernière case du shape
-                //qu'on ajoute à la pos actuelle, on verifie s'il y a des 1
-                //si oui on verifie que dessous c'est libre
-                //puis on verifie que les cases au dessus sont libres
-                //surtout si la derniere est vide
-                //pos[0]+i,pos[1]+j)
-            }
+
+            for(int j=0;j<shape.size();j++){
+                if(shape[shape.front().size()-1][j]==1){//On essaye de savoir si la dernière ligne de la pièce contient un morceau de pièce
+                    if((board_->getIndiceGrille(pos[0]+(shape.front().size()),pos[1]+j))!=7){//On voit si en dessous de notre morceau de pièce on a déjà un cube sur la grille
+                       return false;
+                    }
+                    else{//Si le dessous de la pièce est libre, il faut vérifier une case au-dessus
+                        res=true;
+                        if(shape[shape.front().size()-2][j]==1){//On est à la ligne 1 si la pièce fait 2 de hauteur et 3 si elle en fait 4
+                            if((board_->getIndiceGrille(pos[0]+(shape.front().size())-1,pos[1]+j))!=7){//On va regarder en dessous de la pièce
+                               return false;
+                            }
+                            else{//Dans le cas où il n'y a rien sous la pièce
+                                res=true;
+                                if((shape.front().size())>2){//Si la taille de la pièce est supérieure à 2, on continue
+                                    if(shape[shape.front().size()-3][j]==1){//On est à la ligne 2 si la pièce fait 4 de hauteur
+                                        if((board_->getIndiceGrille(pos[0]+(shape.front().size())-2,pos[1]+j))!=7){//On va regarder en dessous de la pièce
+                                           return false;
+                                        }
+                                        else{//On a rien en dessous du morceau de pièce
+                                            res=true;
+                                            if(shape[shape.front().size()-4][j]==1){//On est à la ligne 1 si la pièce fait 4 de hauteur
+                                                if((board_->getIndiceGrille(pos[0]+(shape.front().size())-3,pos[1]+j))!=7){//On va regarder en dessous de la pièce
+                                                   return false;
+                                                }
+                                                else{//On a rien en dessous du morceau de pièce
+                                                    res=true;
+                                                }
+                                            }
+                                        }
+
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }else {//Si l'avant dernière ligne ne contient pas de morceau de pièce (ligne 1 ou ligne 3)
+                    if(shape[shape.front().size()-2][j]==1){//On essaye de savoir si la dernière ligne de la pièce contient un morceau de pièce
+                        if((board_->getIndiceGrille(pos[0]+(shape.front().size()),pos[1]+j))!=7){//On voit si en dessous de notre morceau de pièce on a déjà un cube sur la grille
+                           return false;
+                        }
+                        else{//Si le dessous de la pièce est libre, il faut vérifier une case au-dessus
+                            res=true;
+                            if((shape.front().size())>2){//Si la taille de la pièce est supérieure à 2, on continue
+                                if(shape[shape.front().size()-3][j]==1){//On est à la ligne 2 si la pièce fait 4 de hauteur
+                                    if((board_->getIndiceGrille(pos[0]+(shape.front().size())-2,pos[1]+j))!=7){//On va regarder en dessous de la pièce
+                                       return false;
+                                    }
+                                    else{//On a rien en dessous du morceau de pièce
+                                        res=true;
+                                        if(shape[shape.front().size()-4][j]==1){//On est à la ligne 1 si la pièce fait 4 de hauteur
+                                            if((board_->getIndiceGrille(pos[0]+(shape.front().size())-3,pos[1]+j))!=7){//On va regarder en dessous de la pièce
+                                               return false;
+                                            }
+                                            else{//On a rien en dessous du morceau de pièce
+                                                res=true;
+                                            }
+                                        }
+                                    }
+
+                                }
+
+                             }
+                         }
+                       }
+                    else {//Si la dernière ligne ne contient pas de morceau de pièce (ligne 1 ou ligne 3)
+                        if((shape.front().size())>2){//Si la taille de la pièce est supérieure à 2, on continue parce que sinon on va avoir un problème d'indice d'accès aux cases
+                                        if(shape[shape.front().size()-3][j]==1){//On essaye de savoir si la ligne 2 de la pièce contient un morceau de pièce
+                                            if((board_->getIndiceGrille(pos[0]+(shape.front().size()),pos[1]+j))!=7){//On voit si en dessous de notre morceau de pièce on a déjà un cube sur la grille
+                                               return false;
+                                            }
+                                            else{//Si le dessous de la pièce est libre, il faut vérifier une case au-dessus
+                                                res=true;
+                                                    if(shape[shape.front().size()-4][j]==1){//On est à la ligne 1 si la pièce fait 4 de hauteur
+                                                        if((board_->getIndiceGrille(pos[0]+(shape.front().size())-2,pos[1]+j))!=7){//On va regarder en dessous de la pièce
+                                                           return false;
+                                                        }
+                                                        else{//On a rien en dessous du morceau de pièce
+                                                            res=true;
+                                                            }
+                                                        }
+
+                                                    }
+
+                                                 }
+                                        else {//Si la dernière ligne ne contient pas de morceau de pièce (ligne 1 pour une pièce de 4)
+                                            if((shape.front().size())>2){//Si la taille de la pièce est supérieure à 2, on continue parce que sinon on va avoir un problème d'indice d'accès aux cases
+                                                            if(shape[shape.front().size()-4][j]==1){//On essaye de savoir si la ligne 2 de la pièce contient un morceau de pièce
+                                                                if((board_->getIndiceGrille(pos[0]+(shape.front().size()),pos[1]+j))!=7){//On voit si en dessous de notre morceau de pièce on a déjà un cube sur la grille
+                                                                   return false;
+                                                                }
+                                                                else{//Si le dessous de la pièce est libre, il faut vérifier une case au-dessus
+                                                                    res=true;
+                                                                        if(shape[shape.front().size()-4][j]==1){//On est à la ligne 1 si la pièce fait 4 de hauteur
+                                                                            if((board_->getIndiceGrille(pos[0]+(shape.front().size())-2,pos[1]+j))!=7){//On va regarder en dessous de la pièce
+                                                                               return false;
+                                                                            }
+                                                                            else{//On a rien en dessous du morceau de pièce
+                                                                                res=true;
+                                                                                }
+                                                                            }
+
+                                                                        }
+
+                                                                     }
+                                                                 }
+                                             }
+
+                                           }
         }
     }
+
+            }
+    }
+    return res;
+}
+
+void Jeu::faireDescendre()
+{
+    std::vector<std::vector<int>> shape;
+    int pos[2]={};
+    getPosTetrimino(pos);
+    getActualShapeTetrimino(shape);
+    if(peutDescendre(shape,pos)){
+        tetrimino->moveDown();
+    }
+
 }
 
 void Jeu::getCouleur(int couleur[], int shape)
