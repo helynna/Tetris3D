@@ -11,6 +11,9 @@
 #include <QApplication>
 #include <QImage>
 
+#include "grille.h"
+#include "jeu.h"
+
 
 
 // Classe dediee a l'affichage d'une scene OpenGL
@@ -36,7 +39,10 @@ protected:
     void paintLinesGL();
 
     //Dessiner les pieces
-    void paintCube(float x, float y,int style, int Couleur[8][3]);
+    void paintCube(float x, float y,int Couleur[3]);
+    //void paintCube(float x, float y,int style, int Couleur[8][3]);
+    void paintTetrimino();
+    void paintBoard();
 
     // Fonction de gestion d'interactions clavier
     void keyPressEvent(QKeyEvent * event);
@@ -46,6 +52,9 @@ protected:
 
 private:
     // Timer d'animation
+    Grille *board;
+    Jeu* game;
+
     float m_TimeElapsed { 0.0f };
     QTimer m_AnimationTimer;
 

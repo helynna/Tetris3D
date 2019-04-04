@@ -18,10 +18,11 @@ protected:
 
     //static int piece[7][4][2][4];//possibilite d'opti en 2,4
     int piece[2][4]={};
+    //int piece[2][2][4]={};
     int angle=0;
     Bloc type_;
-    int x;
-    int y;
+    int x=3;
+    int y=0;
    // std::vector<float> Couleur_;
     int typeCouleur_;
     void setX(int abs) {x=abs;}
@@ -32,10 +33,10 @@ public :
         void rotateRight();
         void rotateLeft();
         void getActualShape(std::vector<std::vector<int>> shape);
-        int getAngle(){return angle;
-                      }
-        template<size_t rows, size_t cols>
-        void f(int (&shape)[rows][cols]);
+        int getAngle(){return angle;}
+
+        //template<size_t rows, size_t cols>
+        //void f(int (&shape)[rows][cols]);
         int getTypeCouleur() {return typeCouleur_;}
         int getX() {return x;}
         int getY() {return y;}

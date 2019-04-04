@@ -2,6 +2,7 @@
 
 Grille::Grille()
 {
+    /*
     //rouge
     Couleur_[0][0]=255;
     //vert
@@ -22,7 +23,7 @@ Grille::Grille()
     Couleur_[6][0]=255;
     Couleur_[6][2]=255;
 
-
+*/
 
 }
 
@@ -50,7 +51,7 @@ void Grille::supprimerLigne(int numLigne)
 
     }
         for(int j=0;j<nbColonne;j++){
-            grille[i][j]=0;
+            grille[i][j]=7;
         }
 
 
@@ -111,3 +112,12 @@ bool Grille::testGrille(int x, int y)
         return true;
     }
 }
+
+/*
+void Grille::getCouleur(int couleur[3], int shape)
+{
+    couleur[0]=Couleur_[shape][0];
+    couleur[1]=Couleur_[shape][1];
+    couleur[2]=Couleur_[shape][2];
+
+}*/

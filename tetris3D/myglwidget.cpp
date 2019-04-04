@@ -30,6 +30,7 @@ MyGLWidget::MyGLWidget(QWidget * parent) : QGLWidget(parent)
 
     m_AnimationTimer.setInterval(10);
     m_AnimationTimer.start();
+    board = new Grille();
 
 }
 
@@ -121,10 +122,11 @@ void MyGLWidget::paintLinesGL()
 
 }
 
-void MyGLWidget::paintCube(float x, float y,int style, int Couleur[8][3])
+void MyGLWidget::paintCube(float x, float y,int Couleur[3])
+//void MyGLWidget::paintCube(float x, float y,int style, int Couleur[8][3])
 {
     glBegin(GL_QUADS);
-    glColor3f(Couleur[style][0],Couleur[style][1],Couleur[style][2]);
+    glColor3f(Couleur[0],Couleur[1],Couleur[2]);
     //Face du dessous
     glVertex3f(x,y,0);
     glVertex3f(x+0.5,y,0);
@@ -165,6 +167,47 @@ void MyGLWidget::paintCube(float x, float y,int style, int Couleur[8][3])
 
 }
 
+void MyGLWidget::paintTetrimino()
+{
+    int Couleur[3]={};
+    std::vector<std::vector<int>> shape;
+    int pos[2]={};
+    game->getCouleur(Couleur,game->getTypeShapeTetrimino());
+    game->getActualShapeTetrimino(shape);
+    game->getPosTetrimino(pos);
+
+    for(int i=0;i<shape.front().size();i++){
+        for(int j=0;j<shape.size();j++){
+            if(shape[i][j]==1){
+                paintCube(pos[0]+i,pos[1]+j,Couleur);//Si j'ai une erreur d'affichage, c'est ici qu'elle va être à cause du double vector
+            }
+
+        }
+    }
+
+
+}
+
+void MyGLWidget::paintBoard()
+{
+    int indice=-1;
+    int Couleur[3]={};
+    for(int i=19;i>=0;i--){
+        for(int j=9;j>=0;j--){
+
+            if(game->doSumLine(i)!=70){
+                indice=game->getIndiceInGrille(i,j);
+                if(indice!=7){
+                    game->getCouleur(Couleur,indice);
+                    paintCube(i,j,Couleur);
+
+                }
+            }
+        }
+    }
+
+}
+
 
 void MyGLWidget::keyPressEvent(QKeyEvent * event)
 {
@@ -183,6 +226,8 @@ void MyGLWidget::keyPressEvent(QKeyEvent * event)
 
         // Sortie de l'application
         case Qt::Key_Up:
+
+            break;
         case Qt::Key_Z:
             if(teta>1){
             teta--;
@@ -192,6 +237,7 @@ void MyGLWidget::keyPressEvent(QKeyEvent * event)
        case Qt::Key_Right:
 
         break;
+
        case Qt::Key_D:
             phi++;
            break;
