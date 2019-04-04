@@ -24,6 +24,8 @@ private:
     int compteur=0;
     bool L_H=false;
     bool R_H=false;
+    bool accel=false;
+    bool rotate=false;
 
 };
 

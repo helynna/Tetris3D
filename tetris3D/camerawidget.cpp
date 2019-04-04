@@ -47,12 +47,12 @@ CameraWidget::CameraWidget(QWidget* parent):QGraphicsView(parent), capture{new V
                         for (Rect r: fists)
                         {
                             scene.addRect(r.x,r.y,r.width,r.height);
-                            if (r.x<min && r.x<200)
+                            if (r.x<min && r.x<width()/2)
                             {
                                 min=r.x;
                                 left=r;
                             }
-                            if(r.x>max&& r.x>=200)
+                            if(r.x>max && r.x>width()/2)
                             {
                                 Right=r;
                                 max=r.x;
@@ -71,12 +71,12 @@ CameraWidget::CameraWidget(QWidget* parent):QGraphicsView(parent), capture{new V
                              {
                                 if (compteur>5)
                                 {
-                                    if(  -left.width< pos_R[0].x-left.x && pos_R[0].x-left.x<left.width &&  min!=5000)
+                                    if(  abs(pos_R[0].x-fists[0].x)<abs(pos_R[1].x-fists[0].x))
                                     {
                                         compteur=0;
                                          pos_R[0]=left;
                                     }
-                                    if (-Right.width<pos_R[1].x-Right.x && pos_R[0].x-Right.x<Right.width && max!=0)
+                                    else
                                     {
                                          pos_R[1]=Right;
                                          compteur=0;
@@ -100,11 +100,11 @@ CameraWidget::CameraWidget(QWidget* parent):QGraphicsView(parent), capture{new V
                                  }
                              }
 
-                            if (pos_R[0].y>pos_R[1].y+pos_R[0].height)
+                            if (pos_R[0].y>pos_R[1].y+pos_R[0].height/2)
                                 L_H=true;
                             else
                                 L_H=false;
-                            if (pos_R[1].y>pos_R[0].y+pos_R[1].height)
+                            if (pos_R[1].y>pos_R[0].y+pos_R[1].height/2)
                                 R_H=true;
                             else
                                 R_H=false;
@@ -112,6 +112,10 @@ CameraWidget::CameraWidget(QWidget* parent):QGraphicsView(parent), capture{new V
                                 accel=true;
                             else
                                 accel=false;
+                            if (abs(pos_R[0].x-pos_R[1].x)<pos_R[0].width+pos_R[1].width)
+                                rotate=true;
+                            else
+                                rotate=false;
 
                         }
 
