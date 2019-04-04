@@ -43,9 +43,7 @@ SOURCES += \
     piecebiais_inverse.cpp \
     piecet_bloc.cpp \
     jeu.cpp \
-    myglwidget.cpp \
-    camerawidget2.cpp \
-    gamewidget2.cpp
+    myglwidget.cpp
 
 HEADERS += \
     piece.h \
@@ -58,9 +56,7 @@ HEADERS += \
     piecebiais_inverse.h \
     piecet_bloc.h \
     jeu.h \
-    myglwidget.h \
-    camerawidget2.h \
-    gamewidget2.h
+    myglwidget.h
 
 FORMS +=
 
