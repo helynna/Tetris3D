@@ -112,6 +112,10 @@ CameraWidget::CameraWidget(QWidget* parent):QGraphicsView(parent), capture{new V
                                 accel=true;
                             else
                                 accel=false;
+                            if (abs(pos_R[1].x-pos_R[0].x)<pos_R[1].width+pos_R[0].width+15)
+                                rotate=true;
+                            else
+                                rotate=false;
 
                         }
 
