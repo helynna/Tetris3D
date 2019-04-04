@@ -12,6 +12,13 @@ Jeu::~Jeu()
     delete board_;
 }
 
+Jeu::~Jeu()
+{
+    delete tetrimino;
+    delete board_;
+
+}
+
 void Jeu::creationPieceAleatoire()
 {
     if(newTetrimino){

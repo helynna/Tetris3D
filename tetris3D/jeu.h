@@ -60,6 +60,7 @@ public:
      void creationPieceAleatoire();//On va modifier la piece tetriminos que l'on stock vu qu'une nouvelle piece se fait seuelemnt quand l'autre est posée
      bool testerGameOver();//On teste si la grille est complète ou si ce n'est pas le cas
      unsigned int compterPoints() { return points; };
+     int getPoints() {return points;}
      void placerTetrimino();//on fait en sorte que la piece soit fixée dans le tableau de la grille
      void faireTournerTour();
 
