@@ -79,11 +79,25 @@ void Jeu::placerTetrimino()
 void Jeu::tournerPieceGauche()
 {
     tetrimino->rotateLeft();
+    std::vector<std::vector<int>> shape;
+    int pos[2]={};
+    getPosTetrimino(pos);
+    getActualShapeTetrimino(shape);
+    if(!peutBouger(shape,pos, 0, 0)){
+        tetrimino->rotateRight();
+    }
 }
 
 void Jeu::tournerPieceDroite()
 {
     tetrimino->rotateRight();
+    std::vector<std::vector<int>> shape;
+    int pos[2]={};
+    getPosTetrimino(pos);
+    getActualShapeTetrimino(shape);
+    if(!peutBouger(shape,pos, 0, 0)){
+        tetrimino->rotateLeft();
+    }
 }
 
 void Jeu::allerAGauche()
