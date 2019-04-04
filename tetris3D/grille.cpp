@@ -25,16 +25,6 @@ Grille::Grille()
 
 */
 
-    for (int i=0; i<nbLigne; i++)
-    {
-        for (int j=0; j<nbColonne; j++)
-        {
-            grille[i][j]=7;
-
-        }
-
-    }
-
 }
 
 bool Grille::isFull(int numLigne)
@@ -121,6 +111,15 @@ bool Grille::testGrille(int x, int y)
     }else{
         return true;
     }
+}
+
+void Grille::addTetrimino(int x, int y, int shape)
+{
+    if(x<nbLigne && y<nbColonne){
+        grille[x][y] = shape;
+    }
+
+
 }
 
 /*

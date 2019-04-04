@@ -10,4 +10,6 @@ debug/piecebiais_inverse.o
 debug/piecet_bloc.o
 debug/jeu.o
 debug/myglwidget.o
+debug/camerawidget2.o
+debug/gamewidget2.o
 debug/moc_myglwidget.o

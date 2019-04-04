@@ -92,9 +92,8 @@ void MyGLWidget::paintGL()
     gluLookAt(5,-3,10,2.5f,1.5f,0,0,1,0);
 
     paintLinesGL();
-
-
-
+    game->creationPieceAleatoire();
+    paintTetrimino();
 
 }
 
@@ -251,6 +250,9 @@ void MyGLWidget::keyPressEvent(QKeyEvent * event)
            break;
 
        case Qt::Key_Down:
+        game->faireDescendre();
+
+        break;
        case Qt::Key_S:
            if(teta<179){
            teta++;
