@@ -7,12 +7,12 @@ using namespace std;
 
 CameraWidget::CameraWidget(QWidget* parent):QGraphicsView(parent), capture{new VideoCapture(0)}
 {
-    if( !face_cascade.load( "C:/Users/Clement/Downloads/TestDetectMultiScale/TestDetectMultiScale/fist.xml" ) )
+    if( !face_cascade.load( "C:/Users/Clement/Tetris3D/tetris3D/fistCascade.xml" ) )
     {
         cerr<<"Error loading haarcascade"<<endl;
         throw -1;
     }
-
+//"C:/Users/Clement/Downloads/TestDetectMultiScale/TestDetectMultiScale/fist.xml"
     setScene(&scene);
 
     connect(&timer, &QTimer::timeout, [this]{
