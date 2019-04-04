@@ -25,6 +25,16 @@ Grille::Grille()
 
 */
 
+    for (int i=0; i<nbLigne; i++)
+    {
+        for (int j=0; j<nbColonne; j++)
+        {
+            grille[i][j]=7;
+
+        }
+
+    }
+
 }
 
 bool Grille::isFull(int numLigne)
