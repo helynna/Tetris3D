@@ -90,6 +90,8 @@ void MyGLWidget::paintGL()
     gluLookAt(x,y,z,0,0,0,0,1,0);*/
 
     //gluLookAt(-5,-3,-10,2.5f,1.5f,0,0,1,0);
+    //gluLookAt(-2,-3,2,2.5f,1.5f,0,0,1,0);
+    //gluLookAt(-3,-3,1,2.5f,1.5f,0,0,1,0);
     gluLookAt(5,-3,10,2.5f,1.5f,0,0,1,0);
 
     paintLinesGL();
