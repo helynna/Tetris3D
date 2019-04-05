@@ -11,5 +11,9 @@ INPUT(
 ./release\piecet_bloc.o
 ./release\jeu.o
 ./release\myglwidget.o
+./release\camerawidget.o
+./release\gamewidget.o
+./release\mainwindow.o
 ./release\moc_myglwidget.o
+./release\moc_mainwindow.o
 );
