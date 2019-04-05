@@ -5,7 +5,7 @@
 #include <QDesktopWidget>
 #include <cmath>
 #include <random>
-
+#include "camerawidget.h"
 
 
 
@@ -28,6 +28,8 @@ MyGLWidget::MyGLWidget(QWidget * parent) : QGLWidget(parent)
         game->faireDescendre();
         updateGL();
     });
+
+
 
     m_AnimationTimer.setInterval(200);
     m_AnimationTimer.start();

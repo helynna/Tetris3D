@@ -10,15 +10,17 @@
 
 class CameraWidget : public QGraphicsView
 {
+
+    Q_OBJECT
 public:
     CameraWidget(QWidget* parent=nullptr);
 
     ~CameraWidget();
 signals:
-    void rot(){}
-    void acceleration(){}
-    void leftsig(){}
-    void rightsig(){}
+    void rot();
+    void acceleration();
+    void leftsig();
+    void rightsig();
 
 private:
     cv::VideoCapture * capture;

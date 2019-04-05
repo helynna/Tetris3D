@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <iostream>
 #include <QDebug>
+#include "myglwidget.h"
 using namespace cv;
 using namespace std;
 
@@ -12,7 +13,7 @@ CameraWidget::CameraWidget(QWidget* parent):QGraphicsView(parent), capture{new V
         cerr<<"Error loading haarcascade"<<endl;
         throw -1;
     }
-    //connect(this,rot,jeu,"slot associé")
+
     setScene(&scene);
 
     connect(&timer, &QTimer::timeout, [this]{

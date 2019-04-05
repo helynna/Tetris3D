@@ -15,5 +15,6 @@ INPUT(
 ./debug\gamewidget.o
 ./debug\mainwindow.o
 ./debug\moc_myglwidget.o
+./debug\moc_camerawidget.o
 ./debug\moc_mainwindow.o
 );
