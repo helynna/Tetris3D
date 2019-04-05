@@ -12,7 +12,7 @@ CameraWidget::CameraWidget(QWidget* parent):QGraphicsView(parent), capture{new V
         cerr<<"Error loading haarcascade"<<endl;
         throw -1;
     }
-//"C:/Users/Clement/Downloads/TestDetectMultiScale/TestDetectMultiScale/fist.xml"
+    //connect(this,rot,jeu,"slot associé")
     setScene(&scene);
 
     connect(&timer, &QTimer::timeout, [this]{
@@ -116,6 +116,58 @@ CameraWidget::CameraWidget(QWidget* parent):QGraphicsView(parent), capture{new V
                                 rotate=true;
                             else
                                 rotate=false;
+
+                            if (previousL)
+                            {
+                                previousL=L_H;
+                            }
+                            else
+                            {
+                                if (L_H)
+                                {
+                                    emit leftsig();
+                                    previousL=L_H;
+                                }
+                            }
+
+                            if (previousR)
+                            {
+                                previousR=R_H;
+                            }
+                            else
+                            {
+                                if (R_H)
+                                {
+                                    emit rightsig();
+                                    previousR=R_H;
+                                }
+                            }
+
+                            if (previousA)
+                            {
+                                previousA=accel;
+                            }
+                            else
+                            {
+                                if (accel)
+                                {
+                                    emit acceleration();
+                                    previousA=accel;
+                                }
+                            }
+                            if (previousRo)
+                            {
+                                previousRo=rotate;
+                            }
+                            else
+                            {
+                                if (rotate)
+                                {
+                                    emit rot();
+                                    previousRo=rotate;
+                                }
+                            }
+
 
                         }
 

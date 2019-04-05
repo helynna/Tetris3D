@@ -14,6 +14,11 @@ public:
     CameraWidget(QWidget* parent=nullptr);
 
     ~CameraWidget();
+signals:
+    void rot(){}
+    void acceleration(){}
+    void leftsig(){}
+    void rightsig(){}
 
 private:
     cv::VideoCapture * capture;
@@ -26,6 +31,12 @@ private:
     bool R_H=false;
     bool accel=false;
     bool rotate=false;
+
+    bool previousL=false;
+    bool previousR=false;
+    bool previousA=false;
+    bool previousRo=false;
+
 
 };
 

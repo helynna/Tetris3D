@@ -3,7 +3,7 @@
 
 #include <QOpenGLWidget>
 #include <QTimer>
-#include "grille.h"
+//#include "grille.h"
 
 class GameWidget : public QOpenGLWidget
 {
