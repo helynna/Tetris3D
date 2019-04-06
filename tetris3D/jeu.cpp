@@ -79,6 +79,19 @@ void Jeu::placerTetrimino()
 
 }
 
+void Jeu::reinitialiser()
+{
+    delete board_;
+    delete tetrimino;
+    points = 0;
+    tetrimino=nullptr;
+    newTetrimino=true;
+    board_->reinitialiser();
+    creationPieceAleatoire();
+
+
+}
+
 void Jeu::tournerPieceGauche()
 {
     tetrimino->rotateLeft();
@@ -208,5 +221,9 @@ void Jeu::getPosTetrimino(int Pos[2])
 
 bool Jeu::testerGameOver() {
     //On teste s'il n'y a pas de pièce sur la dernière ligne
-    return doSumLine(0) != 70;
+    if(doSumLine(0) != 70){
+        newTetrimino=false;
+        return true;
+    }
+    return false;
 }

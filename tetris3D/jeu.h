@@ -42,7 +42,7 @@ public:
      void tournerPieceDroite();
      void allerAGauche();
      void allerADroite();
-     void descenteRapide();
+     //void descenteRapide();
      bool peutDescendre(const std::vector<std::vector<int>>& shape,int pos[2]);
      bool peutBouger(const std::vector<std::vector<int>>& shape,int pos[2], int offx, int offy);
      void faireDescendre();
@@ -59,7 +59,7 @@ public:
      unsigned int compterPoints() { return points; };
      int getPoints() {return points;}
      void placerTetrimino();//on fait en sorte que la piece soit fixée dans le tableau de la grille
-     void faireTournerTour();
+     void reinitialiser();
 
 };
 

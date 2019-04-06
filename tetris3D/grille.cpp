@@ -2,13 +2,7 @@
 
 Grille::Grille()
 {//On rempli notre grille de 7, car la valeur vide est la valeur 7
-    for(int i = 0; i < nbLigne; i++)
-    {
-        for(int j = 0; j < nbColonne; j++)
-        {
-            grille[i][j] = 7;
-        }
-    }
+    initialiser();
 
 }
 
@@ -75,6 +69,18 @@ void Grille::addTetrimino(int x, int y, int shape)
         grille[y][x] = shape;//on ajoute sa valeur dans la grille
     }
 
+
+}
+
+void Grille::initialiser()
+{//On rempli notre grille de 7, car la valeur vide est la valeur 7
+    for(int i = 0; i < nbLigne; i++)
+    {
+        for(int j = 0; j < nbColonne; j++)
+        {
+            grille[i][j] = 7;
+        }
+    }
 
 }
 

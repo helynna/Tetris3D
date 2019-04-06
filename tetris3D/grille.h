@@ -18,9 +18,9 @@ public:
     int supprimerLigneComplete();//Fonction qui teste si la ligne est complète puis la supprime
     int sommeLigne(int numLigne);//Faire une somme des valeurs sur la ligne pour savoir si elle est vide
 
-    bool testGrille(int x, int y);
     int getIndiceGrille(int x, int y) {return grille[y][x];}
-    void addTetrimino(int x, int y, int shape);
+    void addTetrimino(int x, int y, int shape);//Ajout d'un tetrimino dans la grille
+    void initialiser();
 
 
 

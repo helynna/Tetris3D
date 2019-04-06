@@ -100,7 +100,19 @@ void MyGLWidget::paintGL()
 
     glColor3f(1,1,1);
 
-    renderText(30, 30, QString::number(game->compterPoints()));
+    renderText(30, 60, QString::number(game->compterPoints()),QFont ("Arial", 60));
+
+    if(game->testerGameOver()){
+        QString score;
+        score.append("You scored ");
+        score.append(QString::number(game->compterPoints()));
+        score.append(" points.");
+
+        renderText(width()/2-width()/10,height()/2-50,"Game Over !",QFont ("Arial", 50));
+        renderText(width()/2-width()/5,height()/2+25,score,QFont ("Arial", 50));
+        renderText(width()/2-width()/3,height()/2+100,"You can replay using N on the keyboard. ",QFont ("Arial", 50));
+
+    }
 
 }
 
@@ -234,22 +246,36 @@ void MyGLWidget::keyPressEvent(QKeyEvent * event)
         }
 
         // Sortie de l'application
-        case Qt::Key_Up:
 
-            break;
         case Qt::Key_Z:
             if(teta>1){
             teta--;
             }
             break;
 
+        case Qt::Key_Q:
+              phi--;
+             break;
+
+
+        case Qt::Key_S:
+            if(teta<179){
+            teta++;
+            }
+            break;
+
+        case Qt::Key_D:
+            phi++;
+         break;
+
+
        case Qt::Key_Right:
             goRight();
         break;
 
-       case Qt::Key_D:
-            phi++;
-           break;
+        case Qt::Key_Down:
+            goDown();
+         break;
 
         case Qt::Key_Left:
              goLeft();
@@ -263,19 +289,18 @@ void MyGLWidget::keyPressEvent(QKeyEvent * event)
              rotateRight();
          break;
 
-       case Qt::Key_Q:
-            phi--;
-           break;
 
-       case Qt::Key_Down:
-        goDown();
 
+    case Qt::Key_N:
+
+        if(game->testerGameOver()){
+            delete(game);
+            game = new Jeu();
+        }
         break;
-       case Qt::Key_S:
-           if(teta<179){
-           teta++;
-           }
-           break;
+
+
+
         case Qt::Key_Plus:
             if(timeSlow<10){
             timeSlow=timeSlow+0.01;
@@ -298,7 +323,7 @@ void MyGLWidget::keyPressEvent(QKeyEvent * event)
 
         case Qt::Key_Escape:
         {
-            exit(0);
+            mettrePause();
         }
 
         // Cas par defaut
@@ -315,11 +340,11 @@ void MyGLWidget::keyPressEvent(QKeyEvent * event)
     updateGL();
 }
 
-
-void MyGLWidget::mousePressEvent(QMouseEvent *event)
+void MyGLWidget::mettrePause()
 {
-
+    exit(0);
 }
+
 
 void MyGLWidget::rotateLeft()
 {
