@@ -9,22 +9,16 @@
 class Grille
 {
 private :
-    //const unsigned int nbColonne=10;
-    //const unsigned int nbLigne=20;
     unsigned int grille[nbLigne][nbColonne]={};
-    //int Couleur_[8][3]={};
-    //unsigned int indiceActuel=1;
-    //unsigned int grille[20][10]={};
+
 public:
     Grille();
-    bool isFull(int numLigne);
-    void supprimerLigne(int numLigne);
-    int supprimerLigneComplete();
-    int sommeLigne(int numLigne);
+    bool isFull(int numLigne);//tester si une ligne est pleine
+    void supprimerLigne(int numLigne);//fonction pour supprimer une ligne
+    int supprimerLigneComplete();//Fonction qui teste si la ligne est complète puis la supprime
+    int sommeLigne(int numLigne);//Faire une somme des valeurs sur la ligne pour savoir si elle est vide
 
-    bool testDescente(Bloc type,int x, int y, int rotation);//{0,90,180,270};
     bool testGrille(int x, int y);
-    //void getCouleur(int couleur[3], int shape);
     int getIndiceGrille(int x, int y) {return grille[y][x];}
     void addTetrimino(int x, int y, int shape);
 

@@ -82,11 +82,11 @@ void Jeu::placerTetrimino()
 void Jeu::tournerPieceGauche()
 {
     tetrimino->rotateLeft();
-    std::vector<std::vector<int>> shape;
-    int pos[2]={};
+    std::vector<std::vector<int>> shape;//forme actuelle de la pièce avec sa rotation
+    int pos[2]={};//tableau de la position du carré repère de la pièce
     getPosTetrimino(pos);
     getActualShapeTetrimino(shape);
-    if(!peutBouger(shape,pos, 0, 0)){
+    if(!peutBouger(shape,pos, 0, 0)){//Test des collisions avant de faire tourner la pièce
         tetrimino->rotateRight();
     }
 }
@@ -94,48 +94,50 @@ void Jeu::tournerPieceGauche()
 void Jeu::tournerPieceDroite()
 {
     tetrimino->rotateRight();
-    std::vector<std::vector<int>> shape;
-    int pos[2]={};
+    std::vector<std::vector<int>> shape;//forme actuelle de la pièce avec sa rotation
+    int pos[2]={};//tableau de la position du carré repère de la pièce
     getPosTetrimino(pos);
     getActualShapeTetrimino(shape);
-    if(!peutBouger(shape,pos, 0, 0)){
+    if(!peutBouger(shape,pos, 0, 0)){//Test des collisions avant de faire tourner la pièce
         tetrimino->rotateLeft();
     }
 }
 
 void Jeu::allerAGauche()
 {
-    std::vector<std::vector<int>> shape;
-    int pos[2]={};
+    std::vector<std::vector<int>> shape;//forme actuelle de la pièce avec sa rotation
+    int pos[2]={};//tableau de la position du carré repère de la pièce
     getPosTetrimino(pos);
     getActualShapeTetrimino(shape);
-    if(peutBouger(shape,pos, -1, 0)){
+    if(peutBouger(shape,pos, -1, 0)){//Test des collisions avant de faire bouger la pièce
         tetrimino->moveLeft();
     }
 }
 
 void Jeu::allerADroite()
 {
-    std::vector<std::vector<int>> shape;
-    int pos[2]={};
+    std::vector<std::vector<int>> shape;//forme actuelle de la pièce avec sa rotation
+    int pos[2]={};//tableau de la position du carré repère de la pièce
     getPosTetrimino(pos);
     getActualShapeTetrimino(shape);
-    if(peutBouger(shape,pos, 1, 0)){
+    if(peutBouger(shape,pos, 1, 0)){//Test des collisions avant de faire bouger la pièce
         tetrimino->moveRight();
     }
 }
 
 bool Jeu::peutBouger(const std::vector<std::vector<int>>& shape,int pos[2], int offx, int offy)
-{
+{//On applique un offset dans le cas ou notre carré qui représente la pièce est décalé à cause d'une rotation
+ //Mais aussi quand on veut tester vers le bas car le carré représentatif est celui en haut à gauche de la pièce
+ //Or pour tester le mouvement vers le bas on veut la 2nd ligne
     for(int i = 0; i < shape.size(); i++)
     {
         for(int j = 0; j < shape[i].size(); j++)
         {
-            if(shape[i][j] == 1)
+            if(shape[i][j] == 1)//On teste si jamais il y a une valeur dans la pièce, donc qu'il s'agit d'un morceau de pièce
             {
-                if(pos[0]+i+offx < 0 || pos[0]+i+offx >= nbColonne || pos[1]+j+offy < 0 || pos[1]+j+offy >= nbLigne)
+                if(pos[0]+i+offx < 0 || pos[0]+i+offx >= nbColonne || pos[1]+j+offy < 0 || pos[1]+j+offy >= nbLigne)//Si ça sort des dimensions de la grille on ne peut pas bouger
                     return false;
-                if(board_->getIndiceGrille(pos[0]+i+offx, pos[1]+j+offy) != 7)
+                if(board_->getIndiceGrille(pos[0]+i+offx, pos[1]+j+offy) != 7)//S'il a déjà une pièce dans la grille on ne peut pas y aller
                     return false;
             }
         }
@@ -146,7 +148,7 @@ bool Jeu::peutBouger(const std::vector<std::vector<int>>& shape,int pos[2], int 
 
 bool Jeu::peutDescendre(const std::vector<std::vector<int>>& shape,int pos[2])
 {
-    return peutBouger(shape, pos, 0, 1);
+    return peutBouger(shape, pos, 0, 1);//test si on peut bouger vers le bas, on applique un offset vers le bas pour tester directement la seconde ligne
 }
 
 void Jeu::faireDescendre()
@@ -155,12 +157,12 @@ void Jeu::faireDescendre()
     int pos[2]={};
     getPosTetrimino(pos);
     getActualShapeTetrimino(shape);
-    if(peutDescendre(shape,pos)){
-        tetrimino->moveDown();
-    } else {
-        placerTetrimino();
-        int deletedLines = board_->supprimerLigneComplete();
-        switch(deletedLines)
+    if(peutDescendre(shape,pos)){//On regarde s'il peut descendre
+        tetrimino->moveDown();//On le fait descendre
+    } else {//il ne peut pas descendre
+        placerTetrimino();//On fixe la valeur du tetrimino dans la grille
+        int deletedLines = board_->supprimerLigneComplete();//On verifie s'il faut supprimer la ligne
+        switch(deletedLines)//On applique les points en fonction du nombre de lignes supprimées
         {
             case 1:
                 points += 100;
@@ -175,14 +177,14 @@ void Jeu::faireDescendre()
                 points += 1000;
                 break;
         }
-        if(!testerGameOver())
-            creationPieceAleatoire();
+        if(!testerGameOver())//Si le joueur peut encore jouer
+            creationPieceAleatoire();//On créer une nouvelle pièce
     }
 
 }
 
 void Jeu::getCouleur(int couleur[], int shape)
-{
+{//A partir de l'indice de la pièce on récupère ses valeurs rgb pour la dessiner de la bonne couleur
         couleur[0]=Couleur_[shape][0];
         couleur[1]=Couleur_[shape][1];
         couleur[2]=Couleur_[shape][2];
@@ -205,5 +207,6 @@ void Jeu::getPosTetrimino(int Pos[2])
 }
 
 bool Jeu::testerGameOver() {
+    //On teste s'il n'y a pas de pièce sur la dernière ligne
     return doSumLine(0) != 70;
 }
