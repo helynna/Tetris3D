@@ -18,14 +18,14 @@ private:
     Piece *tetrimino=nullptr;
     Grille* board_;
     int Couleur_[8][3]={//Les couleurs de nos pièces et l'indice correspond à la valeur dans la grille
-        {255, 0, 0},
-        {0, 255, 0},
-        {0, 0, 255},
-        {255, 255, 0},
-        {255, 0, 255},
-        {0, 255, 255},
-        {128, 128, 128},
-        {0, 0, 0}
+        {255, 0, 0},//rouge
+        {0, 255, 0},//Vert
+        {0, 0, 255},//bleu
+        {255, 255, 0},//jaune
+        {255, 0, 255},//violet
+        {0, 255, 255},//cyan
+        {255,180,100},//Orange mais Gris : 180 partout
+        {0, 0, 0}//vide
     };
     bool newTetrimino=true;//Booleen qui nous permet de savoir si l'on peut créer une nouvelle pièce ou pas
 

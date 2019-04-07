@@ -86,7 +86,7 @@ void Jeu::reinitialiser()
     points = 0;
     tetrimino=nullptr;
     newTetrimino=true;
-    board_->reinitialiser();
+    board_->initialiser();
     creationPieceAleatoire();
 
 
