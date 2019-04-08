@@ -12,7 +12,6 @@ INPUT(
 ./release\jeu.o
 ./release\myglwidget.o
 ./release\camerawidget.o
-./release\gamewidget.o
 ./release\mainwindow.o
 ./release\moc_myglwidget.o
 ./release\moc_camerawidget.o

@@ -12,7 +12,6 @@ INPUT(
 ./debug\jeu.o
 ./debug\myglwidget.o
 ./debug\camerawidget.o
-./debug\gamewidget.o
 ./debug\mainwindow.o
 ./debug\moc_myglwidget.o
 ./debug\moc_camerawidget.o

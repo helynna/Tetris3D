@@ -45,7 +45,6 @@ SOURCES += \
     jeu.cpp \
     myglwidget.cpp \
     camerawidget.cpp \
-    gamewidget.cpp \
     mainwindow.cpp
 
 HEADERS += \
@@ -61,7 +60,6 @@ HEADERS += \
     jeu.h \
     myglwidget.h \
     camerawidget.h \
-    gamewidget.h \
     mainwindow.h
 
 FORMS += \
