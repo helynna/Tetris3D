@@ -43,7 +43,10 @@ SOURCES += \
     piecebiais_inverse.cpp \
     piecet_bloc.cpp \
     jeu.cpp \
-    myglwidget.cpp
+    myglwidget.cpp \
+    camerawidget.cpp \
+    gamewidget.cpp \
+    mainwindow.cpp
 
 HEADERS += \
     piece.h \
@@ -56,9 +59,13 @@ HEADERS += \
     piecebiais_inverse.h \
     piecet_bloc.h \
     jeu.h \
-    myglwidget.h
+    myglwidget.h \
+    camerawidget.h \
+    gamewidget.h \
+    mainwindow.h
 
-FORMS +=
+FORMS += \
+    mainwindow.ui
 
 
 LIBS += -L$$(OPENCV_DIR)\lib \

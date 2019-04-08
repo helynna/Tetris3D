@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <ctime>
 #include "myglwidget.h"
+#include "mainwindow.h"
 
 /*
 int main(int argc, char *argv[])
@@ -12,7 +13,7 @@ int main(int argc, char *argv[])
     return a.exec();
 }*/
 
-int main(int argc, char *argv[])
+/*int main(int argc, char *argv[])
 {
     // Initialisation du generateur de nombres aleatoires
     srand(time(nullptr));
@@ -27,4 +28,12 @@ int main(int argc, char *argv[])
 
     // Execution de l'application QT
     return app.exec();
+}*/
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+
+    return a.exec();
 }

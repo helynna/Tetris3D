@@ -11,5 +11,10 @@ INPUT(
 ./debug\piecet_bloc.o
 ./debug\jeu.o
 ./debug\myglwidget.o
+./debug\camerawidget.o
+./debug\gamewidget.o
+./debug\mainwindow.o
 ./debug\moc_myglwidget.o
+./debug\moc_camerawidget.o
+./debug\moc_mainwindow.o
 );
