@@ -31,7 +31,7 @@ MyGLWidget::MyGLWidget(QWidget * parent) : QGLWidget(parent)
 
 
 
-    m_AnimationTimer.setInterval(200);
+    m_AnimationTimer.setInterval(1000);
     m_AnimationTimer.start();
     game = new Jeu();
 
@@ -129,7 +129,7 @@ void MyGLWidget::paintGL()
 
         renderText(width()/2-width()/10,height()/2-50,"Game Over !",QFont ("Arial", 50));
         renderText(width()/2-width()/5,height()/2+25,score,QFont ("Arial", 50));
-        renderText(width()/2-width()/3,height()/2+100,"You can replay using N on the keyboard. ",QFont ("Arial", 50));
+        renderText(width()/2-width()/3,height()/2+100,"You can replay using N on the keyboard. ",QFont ("Arial", 30));
 
     }
 
