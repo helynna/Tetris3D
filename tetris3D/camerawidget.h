@@ -8,6 +8,9 @@
 #include <QWidget>
 #include <QTimer>
 
+//Auteurs : Clément Jarousse
+
+
 class CameraWidget : public QGraphicsView
 {
 

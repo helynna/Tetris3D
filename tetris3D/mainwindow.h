@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 
+//Auteurs :Clément Jarousse
+
+
 namespace Ui {
 class MainWindow;
 }

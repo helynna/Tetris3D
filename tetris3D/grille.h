@@ -3,6 +3,8 @@
 
 #include "piece.h"
 
+//Auteurs : Elodie Charitat
+
 #define nbColonne 10//Nombre de colonne pour la grille
 #define nbLigne 20//Nombre de ligne pour la grille
 
@@ -12,7 +14,7 @@ private :
     unsigned int grille[nbLigne][nbColonne]={};
 
 public:
-    /*  Role : Construire l'objet et initilaiser la grille avec la valeur vide, le 7
+    /*  Role : Construire l'objet et initialiser la grille avec la valeur vide, le 7
         Entrée : vide
         Sortie :vide */
     Grille();

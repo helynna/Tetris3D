@@ -5,13 +5,13 @@
 #include <QDesktopWidget>
 #include <cmath>
 #include <random>
-#include "camerawidget.h"
+
 
 
 
 // Declarations des constantes
-const unsigned int WIN_WIDTH  = 400;
-const unsigned int WIN_HEIGHT = 400;
+const unsigned int WIN_WIDTH  = 1600;
+const unsigned int WIN_HEIGHT = 900;
 const float MAX_DIMENSION     = 50.0f;
 
 
@@ -19,7 +19,7 @@ const float MAX_DIMENSION     = 50.0f;
 MyGLWidget::MyGLWidget(QWidget * parent) : QGLWidget(parent)
 {
     // Reglage de la taille/position
-   // setFixedSize(WIN_WIDTH, WIN_HEIGHT);
+    setFixedSize(WIN_WIDTH, WIN_HEIGHT);
     //move(QApplication::desktop()->screen()->rect().center() - rect().center());
 
     // Connexion du timer
@@ -29,9 +29,7 @@ MyGLWidget::MyGLWidget(QWidget * parent) : QGLWidget(parent)
         updateGL();
     });
 
-
-
-    m_AnimationTimer.setInterval(1000);
+    m_AnimationTimer.setInterval(200);
     m_AnimationTimer.start();
     game = new Jeu();
 
@@ -110,6 +108,7 @@ void MyGLWidget::paintGL()
     //gluLookAt(-5,-3,-10,2.5f,1.5f,0,0,1,0);
     //gluLookAt(-2,-3,2,2.5f,1.5f,0,0,1,0);
     //gluLookAt(-3,-3,1,2.5f,1.5f,0,0,1,0);
+    //gluLookAt(5,3,14,5,9,0,0,1,0);
     gluLookAt(5,-3,10,2.5f,1.5f,0,0,1,0);
 
     paintLinesGL();
@@ -119,17 +118,17 @@ void MyGLWidget::paintGL()
 
     glColor3f(1,1,1);
 
-    renderText(30, 60, QString::number(game->compterPoints()),QFont ("Arial", 60));
+    renderText(30, 60, QString::number(game->getPoints()),QFont ("Arial", 60));
 
     if(game->testerGameOver()){
         QString score;
         score.append("You scored ");
-        score.append(QString::number(game->compterPoints()));
+        score.append(QString::number(game->getPoints()));
         score.append(" points.");
 
         renderText(width()/2-width()/10,height()/2-50,"Game Over !",QFont ("Arial", 50));
         renderText(width()/2-width()/5,height()/2+25,score,QFont ("Arial", 50));
-        renderText(width()/2-width()/3,height()/2+100,"You can replay using N on the keyboard. ",QFont ("Arial", 30));
+        renderText(width()/2-width()/3,height()/2+100,"You can replay using N on the keyboard. ",QFont ("Arial", 50));
 
     }
 
