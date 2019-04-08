@@ -22,6 +22,15 @@ void Piece::rotateLeft()
     }
 }
 
+void Piece::rotateRight()
+{
+    angle+=90;
+    if(angle>270){
+        angle = 0;
+    }
+
+}
+
 
 void Piece::getActualShape(std::vector<std::vector<int> >& shape)
 {

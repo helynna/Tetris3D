@@ -40,8 +40,8 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(737, 640);
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+        MainWindow->resize(737, 349);
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
@@ -54,22 +54,24 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         splitter = new QSplitter(centralwidget);
         splitter->setObjectName(QStringLiteral("splitter"));
-        splitter->setOrientation(Qt::Vertical);
+        splitter->setOrientation(Qt::Horizontal);
         openGLWidget = new MyGLWidget(splitter);
         openGLWidget->setObjectName(QStringLiteral("openGLWidget"));
-        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Minimum);
         sizePolicy1.setHorizontalStretch(1);
         sizePolicy1.setVerticalStretch(1);
         sizePolicy1.setHeightForWidth(openGLWidget->sizePolicy().hasHeightForWidth());
         openGLWidget->setSizePolicy(sizePolicy1);
+        openGLWidget->setMinimumSize(QSize(500, 500));
         splitter->addWidget(openGLWidget);
         graphicsView = new CameraWidget(splitter);
         graphicsView->setObjectName(QStringLiteral("graphicsView"));
-        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy2.setHorizontalStretch(0);
+        QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Minimum);
+        sizePolicy2.setHorizontalStretch(1);
         sizePolicy2.setVerticalStretch(0);
         sizePolicy2.setHeightForWidth(graphicsView->sizePolicy().hasHeightForWidth());
         graphicsView->setSizePolicy(sizePolicy2);
+        graphicsView->setMinimumSize(QSize(600, 500));
         splitter->addWidget(graphicsView);
 
         horizontalLayout->addWidget(splitter);
