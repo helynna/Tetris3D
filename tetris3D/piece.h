@@ -26,8 +26,8 @@ protected:
     int x=3;//Position en x du carré de repère de la piece
     int y=0;//Position en y du carré de repère de la piece
     int typeCouleur_;//entier qui corredpond à la valeur que la pièce aura dans la grille
-    void setX(int abs) {x=abs;}
-    void setY(int ord) {y=ord;}
+    void setX(int abs) {x=abs;}//Mettre une valeur à la position x de la pièce
+    void setY(int ord) {y=ord;}//Mettre une valeur à la position y de la pièce
 
 public :
     /*  Role : Construire l'objet et initialiser la forme de la pièce
