@@ -46,9 +46,10 @@ protected:
 
     // Fonction de gestion d'interactions clavier
     void keyPressEvent(QKeyEvent * event);
+    void mettrePause();
 
-    //Fonction de gestion d'interactions souris
-    void mousePressEvent(QMouseEvent * event);
+
+
 
 public slots:
     void rotateLeft();
@@ -60,6 +61,8 @@ public slots:
 private:
     // Timer d'animation
     Jeu* game;
+
+    bool gameOver=false;
 
     float m_TimeElapsed { 0.0f };
     QTimer m_AnimationTimer;

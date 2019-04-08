@@ -16,14 +16,11 @@ class Piece
 
 protected:
 
-    //static int piece[7][4][2][4];//possibilite d'opti en 2,4
-    int piece[2][4]={};
-    //int piece[2][2][4]={};
-    int angle=0;
+    int piece[2][4]={};//Tableau contenant la forme de la pièce
+    int angle=0;//rotation actuelle de la pièce
     Bloc type_;
-    int x=3;
+    int x=3;//Position du carré de repère de la piece
     int y=0;
-   // std::vector<float> Couleur_;
     int typeCouleur_;
     void setX(int abs) {x=abs;}
     void setY(int ord) {y=ord;}
@@ -32,11 +29,10 @@ public :
         Piece();
         void rotateRight();
         void rotateLeft();
-        void getActualShape(std::vector<std::vector<int>>& shape);
+        void getActualShape(std::vector<std::vector<int>>& shape);//Lis le tableau contenant la forme de base, en fonction de la rotation
         int getAngle(){return angle;}
 
-        //template<size_t rows, size_t cols>
-        //void f(int (&shape)[rows][cols]);
+
         int getTypeCouleur() {return typeCouleur_;}
         int getX() {return x;}
         int getY() {return y;}

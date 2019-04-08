@@ -17,24 +17,21 @@ private:
     unsigned int points = 0;
     Piece *tetrimino=nullptr;
     Grille* board_;
-    int Couleur_[8][3]={
-        {255, 0, 0},
-        {0, 255, 0},
-        {0, 0, 255},
-        {255, 255, 0},
-        {255, 0, 255},
-        {0, 255, 255},
-        {128, 128, 128},
-        {0, 0, 0}
+    int Couleur_[8][3]={//Les couleurs de nos pièces et l'indice correspond à la valeur dans la grille
+        {255, 0, 0},//rouge
+        {0, 255, 0},//Vert
+        {0, 0, 255},//bleu
+        {255, 255, 0},//jaune
+        {255, 0, 255},//violet
+        {0, 255, 255},//cyan
+        {255,180,100},//Orange mais Gris : 180 partout
+        {0, 0, 0}//vide
     };
-    bool newTetrimino=true;
+    bool newTetrimino=true;//Booleen qui nous permet de savoir si l'on peut créer une nouvelle pièce ou pas
 
 public:
     Jeu();
     ~Jeu();
-
-    //void ajouterPiece();
-    //void fixerPiece();
 
     //Concernant le tetrimino
      void getActualShapeTetrimino(std::vector<std::vector<int>>& shape) { tetrimino->getActualShape(shape);}
@@ -45,7 +42,7 @@ public:
      void tournerPieceDroite();
      void allerAGauche();
      void allerADroite();
-     void descenteRapide();
+     //void descenteRapide();
      bool peutDescendre(const std::vector<std::vector<int>>& shape,int pos[2]);
      bool peutBouger(const std::vector<std::vector<int>>& shape,int pos[2], int offx, int offy);
      void faireDescendre();
@@ -58,11 +55,11 @@ public:
 
     //Concernant le jeu en général
      void creationPieceAleatoire();//On va modifier la piece tetriminos que l'on stock vu qu'une nouvelle piece se fait seuelemnt quand l'autre est posée
-     bool testerGameOver();//On teste si la grille est complète ou si ce n'est pas le cas
+     bool testerGameOver();//On teste si la grille est "complète" ou si ce n'est pas le cas
      unsigned int compterPoints() { return points; };
      int getPoints() {return points;}
      void placerTetrimino();//on fait en sorte que la piece soit fixée dans le tableau de la grille
-     void faireTournerTour();
+     void reinitialiser();
 
 };
 

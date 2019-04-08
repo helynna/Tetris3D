@@ -49,8 +49,24 @@ void MyGLWidget::initializeGL()
     glEnable(GL_DEPTH_TEST);
 
 
-    //glEnable(GL_LIGHTING);
-    //glEnable(GL_TEXTURE_2D);
+    // Reglage de la lampe
+    //
+    /*glEnable(GL_LIGHT0);
+
+    GLfloat CouleurLumiere[]={0.5,0.5,0.5,1.0};
+    //glMaterialfv(GL_FRONT, GL_EMISSION, CouleurLumiere);
+
+    GLfloat light_tab[] = {5,-3,10,1.0};
+    glLightfv(GL_LIGHT0, GL_POSITION, light_tab);
+
+    GLfloat colorAmbiante_tab[]={1.0,1.0,0.5,1.0};
+    glLightfv(GL_LIGHT0,GL_AMBIENT, colorAmbiante_tab);
+
+
+
+    //Activation de la lumière
+    glEnable(GL_LIGHTING);*/
+
 }
 
 void MyGLWidget::resizeGL(int widthW, int heightW)
@@ -98,33 +114,47 @@ void MyGLWidget::paintGL()
 
     paintLinesGL();
     paintBoard();
+
     paintTetrimino();
 
     glColor3f(1,1,1);
 
-    renderText(30, 30, QString::number(game->compterPoints()));
+    renderText(30, 60, QString::number(game->compterPoints()),QFont ("Arial", 60));
+
+    if(game->testerGameOver()){
+        QString score;
+        score.append("You scored ");
+        score.append(QString::number(game->compterPoints()));
+        score.append(" points.");
+
+        renderText(width()/2-width()/10,height()/2-50,"Game Over !",QFont ("Arial", 50));
+        renderText(width()/2-width()/5,height()/2+25,score,QFont ("Arial", 50));
+        renderText(width()/2-width()/3,height()/2+100,"You can replay using N on the keyboard. ",QFont ("Arial", 50));
+
+    }
 
 }
 
 
 void MyGLWidget::paintLinesGL()
 {
+    //glDisable(GL_LIGHTING);
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(0.5f,0.5f,0.5f);
 
     //Tracer les lignes
     for(int j=0;j<=20;j++){
         glBegin(GL_LINE_LOOP);
-        glVertex3f(0,j*0.5,0);
-        glVertex3f(5,j*0.5,0);
+        glVertex3f(0,j*0.5f,0);
+        glVertex3f(5,j*0.5f,0);
         glEnd();
     }
 
     //Tracer les colonnes
     for(int i=0;i<=10;i++){
         glBegin(GL_LINE_LOOP);
-        glVertex3f(i*0.5,0,0);
-        glVertex3f(i*0.5,10,0);
+        glVertex3f(i*0.5f,0,0);
+        glVertex3f(i*0.5f,10,0);
         glEnd();
     }
 
@@ -133,46 +163,84 @@ void MyGLWidget::paintLinesGL()
 void MyGLWidget::paintCube(float x, float y,int Couleur[3])
 //void MyGLWidget::paintCube(float x, float y,int style, int Couleur[8][3])
 {
+    std::vector<float> Color;
+    std::vector<float> ColorOmbre;
+    std::vector<float> ColorOmbreTotale;
+    Color.push_back(Couleur[0]/255);
+    Color.push_back(Couleur[1]/255);
+    Color.push_back(Couleur[2]/255);
+
+/*
+    ColorOmbre.push_back(Couleur[0]-50/255);
+    ColorOmbre.push_back(Couleur[1]-50/255);
+    ColorOmbre.push_back(Couleur[2]-50/255);
+
+
+    ColorOmbreTotale.push_back(Couleur[0]-100/255);
+    ColorOmbreTotale.push_back(Couleur[1]-100/255);
+    ColorOmbreTotale.push_back(Couleur[2]-100/255);*/
+
+    //glEnable(GL_LIGHTING);
     x /= 2;
     y /= 2;
 
+    //glColor3ub(Couleur[0],Couleur[1],Couleur[2]);
     glBegin(GL_QUADS);
-    glColor3ub(Couleur[0],Couleur[1],Couleur[2]);
+    //glMaterialfv(GL_FRONT, GL_AMBIENT, Color.data());
+    //glMaterialfv(GL_FRONT, GL_DIFFUSE, Color.data());
     //Face du dessous
+    glColor3ub(Couleur[0]-100*(Couleur[0]/255),Couleur[1]-100*(Couleur[1]/255),Couleur[2]-100*(Couleur[2]/255));
+    glNormal3f(x+0.25f,y+0.25f,-0.5);
+
     glVertex3f(x,y,0);
-    glVertex3f(x+0.5,y,0);
-    glVertex3f(x+0.5,y+0.5,0);
-    glVertex3f(x,y+0.5,0);
+    glVertex3f(x+0.5f,y,0);
+    glVertex3f(x+0.5f,y+0.5f,0);
+    glVertex3f(x,y+0.5f,0);
 
     //Face du haut
+    glColor3ub(Couleur[0]-50*(Couleur[0]/255),Couleur[1]-50*(Couleur[1]/255),Couleur[2]-50*(Couleur[2]/255));
+    glNormal3f(x+0.25f,y-0.5f,0.25);
+
     glVertex3f(x,y,0);
-    glVertex3f(x+0.5,y,0);
-    glVertex3f(x+0.5,y,0.5);
+    glVertex3f(x+0.5f,y,0);
+    glVertex3f(x+0.5f,y,0.5);
     glVertex3f(x,y,0.5);
 
     //Face de droite
-    glVertex3f(x+0.5,y,0);
-    glVertex3f(x+0.5,y+0.5,0);
-    glVertex3f(x+0.5,y+0.5,0.5);
-    glVertex3f(x+0.5,y,0.5);
+    glColor3ub(Couleur[0]-50*(Couleur[0]/255),Couleur[1]-50*(Couleur[1]/255),Couleur[2]-50*(Couleur[2]/255));
+    glNormal3f(x+0.75f,y+0.25f,0.25);
+
+    glVertex3f(x+0.5f,y,0);
+    glVertex3f(x+0.5f,y+0.5f,0);
+    glVertex3f(x+0.5f,y+0.5f,0.5);
+    glVertex3f(x+0.5f,y,0.5);
 
     //Face du bas
-    glVertex3f(x+0.5,y+0.5,0);
-    glVertex3f(x,y+0.5,0);
-    glVertex3f(x,y+0.5,0.5);
-    glVertex3f(x+0.5,y+0.5,0.5);
+    glColor3ub(Couleur[0]-50*(Couleur[0]/255),Couleur[1]-50*(Couleur[1]/255),Couleur[2]-50*(Couleur[2]/255));
+    glNormal3f(x+0.25f,y+0.75f,0.25);
+
+    glVertex3f(x+0.5f,y+0.5f,0);
+    glVertex3f(x,y+0.5f,0);
+    glVertex3f(x,y+0.5f,0.5);
+    glVertex3f(x+0.5f,y+0.5f,0.5);
 
     //Face de gauche
+   glColor3ub(Couleur[0]-50*(Couleur[0]/255),Couleur[1]-50*(Couleur[1]/255),Couleur[2]-50*(Couleur[2]/255));
+    glNormal3f(x-0.5f,y+0.25f,0.25);
+
     glVertex3f(x,y,0);
-    glVertex3f(x,y+0.5,0);
-    glVertex3f(x,y+0.5,0.5);
+    glVertex3f(x,y+0.5f,0);
+    glVertex3f(x,y+0.5f,0.5);
     glVertex3f(x,y,0.5);
 
     //Face du dessus
+    glColor3ub(Couleur[0],Couleur[1],Couleur[2]);
+    glNormal3f(x+0.25f,y+0.25f,1);
+
     glVertex3f(x,y,0.5);
-    glVertex3f(x+0.5,y,0.5);
-    glVertex3f(x+0.5,y+0.5,0.5);
-    glVertex3f(x,y+0.5,0.5);
+    glVertex3f(x+0.5f,y,0.5);
+    glVertex3f(x+0.5f,y+0.5f,0.5);
+    glVertex3f(x,y+0.5f,0.5);
 
     glEnd();
 
@@ -180,6 +248,7 @@ void MyGLWidget::paintCube(float x, float y,int Couleur[3])
 
 void MyGLWidget::paintTetrimino()
 {
+    //glEnable(GL_LIGHTING);
     int Couleur[3]={};
     std::vector<std::vector<int>> shape;
     int pos[2]={};
@@ -201,6 +270,7 @@ void MyGLWidget::paintTetrimino()
 
 void MyGLWidget::paintBoard()
 {
+    //glEnable(GL_LIGHTING);
     int indice=-1;
     int Couleur[3]={};
     for(int i=19;i>=0;i--){
@@ -236,22 +306,36 @@ void MyGLWidget::keyPressEvent(QKeyEvent * event)
         }
 
         // Sortie de l'application
-        case Qt::Key_Up:
 
-            break;
         case Qt::Key_Z:
             if(teta>1){
             teta--;
             }
             break;
 
+        case Qt::Key_Q:
+              phi--;
+             break;
+
+
+        case Qt::Key_S:
+            if(teta<179){
+            teta++;
+            }
+            break;
+
+        case Qt::Key_D:
+            phi++;
+         break;
+
+
        case Qt::Key_Right:
             goRight();
         break;
 
-       case Qt::Key_D:
-            phi++;
-           break;
+        case Qt::Key_Down:
+            goDown();
+         break;
 
         case Qt::Key_Left:
              goLeft();
@@ -265,42 +349,41 @@ void MyGLWidget::keyPressEvent(QKeyEvent * event)
              rotateRight();
          break;
 
-       case Qt::Key_Q:
-            phi--;
-           break;
 
-       case Qt::Key_Down:
-        goDown();
 
+    case Qt::Key_N:
+
+        if(game->testerGameOver()){
+            delete(game);
+            game = new Jeu();
+        }
         break;
-       case Qt::Key_S:
-           if(teta<179){
-           teta++;
-           }
-           break;
+
+
+
         case Qt::Key_Plus:
             if(timeSlow<10){
-            timeSlow=timeSlow+0.01;
+            timeSlow=timeSlow+0.01f;
             }
         break;
 
     case Qt::Key_Minus:
-        if(timeSlow>0.01){
-            timeSlow=timeSlow-0.01;
+        if(timeSlow>0.01f){
+            timeSlow=timeSlow-0.01f;
         }
         break;
         case Qt::Key_U:
-             dist=dist+0.5;
+             dist=dist+0.5f;
             break;
 
         case Qt::Key_R:
-             dist=dist-0.5;
+             dist=dist-0.5f;
             break;
 
 
         case Qt::Key_Escape:
         {
-            exit(0);
+            mettrePause();
         }
 
         // Cas par defaut
@@ -317,11 +400,11 @@ void MyGLWidget::keyPressEvent(QKeyEvent * event)
     updateGL();
 }
 
-
-void MyGLWidget::mousePressEvent(QMouseEvent *event)
+void MyGLWidget::mettrePause()
 {
-
+    exit(0);
 }
+
 
 void MyGLWidget::rotateLeft()
 {
