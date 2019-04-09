@@ -51,7 +51,8 @@ protected:
 
     //Dessiner les pieces
     /*  Role : Fonction qui permet de dessiner un cube en dessinant ses 6 faces par rapport à une position donnée
-        Entrée : deux entiers qui correspondent à la position du coin en haut à gauche de la face du dessous et un tableau de 3 entiers qui correspond à la couleur RGB du cube
+        Entrée : deux entiers qui correspondent à la position du coin en haut à gauche de la face du dessous et un tableau de
+                 3 entiers qui correspond à la couleur RGB du cube
         Sortie :vide */
     void paintCube(float x, float y,int Couleur[3]);
     /*  Role : Fonction qui permet de dessiner le tétrimino qui n'est pas fixé dans la grille, celui que l'on peut déplacer
@@ -82,6 +83,7 @@ public slots:
     void goLeft();
     void goRight();
     void goDown();
+    void regame();
 
 private:
     // Timer d'animation

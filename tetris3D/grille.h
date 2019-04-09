@@ -46,7 +46,8 @@ public:
     int getIndiceGrille(int x, int y) {return grille[y][x];}
 
     /*  Role : Ajout d'un tetrimino dans la grille à la position indiquer
-        Entrée : 2 entiers qui correspondent à la position dans la grille et le 3e indice qui correspond à la valeur de l'indice à ajouter dans la grille
+        Entrée : 2 entiers qui correspondent à la position dans la grille et le 3e indice qui correspond à la valeur
+                 de l'indice à ajouter dans la grille
         Sortie :vide */
     void addTetrimino(int x, int y, int shape);
 
@@ -54,12 +55,6 @@ public:
         Entrée : vide
         Sortie :vide */
     void initialiser();
-
-
-
-
-
-
 
 };
 

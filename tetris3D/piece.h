@@ -86,9 +86,6 @@ public :
         void moveDown() {y+=1;}
 
 
-
-
-
 };
 
 

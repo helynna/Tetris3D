@@ -10,7 +10,6 @@
 
 //Auteurs : Clément Jarousse
 
-
 class CameraWidget : public QGraphicsView
 {
 
@@ -19,12 +18,17 @@ public:
     CameraWidget(QWidget* parent=nullptr);
 
     ~CameraWidget();
+    void keyPressEvent(QKeyEvent * event);
+
+
+
 signals:
+// signaux permettant d'utiliser les fonctions de déplacement des pièces lorsque le joueur effectue le mouvement associé.
     void rot();
     void acceleration();
     void leftsig();
     void rightsig();
-
+    void newgame();
 private:
     cv::VideoCapture * capture;
     QTimer timer;
@@ -36,12 +40,10 @@ private:
     bool R_H=false;
     bool accel=false;
     bool rotate=false;
-
     bool previousL=false;
     bool previousR=false;
     bool previousA=false;
     bool previousRo=false;
-
 
 };
 

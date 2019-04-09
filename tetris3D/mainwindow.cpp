@@ -10,9 +10,13 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->graphicsView, SIGNAL(rightsig()),ui->openGLWidget,SLOT(goLeft()));
     connect(ui->graphicsView, SIGNAL(leftsig()),ui->openGLWidget,SLOT(goRight()));
     connect(ui->graphicsView, SIGNAL(acceleration()),ui->openGLWidget,SLOT(goDown()));
+    connect(ui->graphicsView, SIGNAL(newgame()), ui->openGLWidget,SLOT(regame()));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
+

@@ -198,3 +198,11 @@ CameraWidget::~CameraWidget()
     delete capture;
 }
 
+
+void CameraWidget::keyPressEvent(QKeyEvent * event)
+{
+     switch(event->key())
+     { case Qt::Key_N:
+        emit newgame();
+         break;}
+}

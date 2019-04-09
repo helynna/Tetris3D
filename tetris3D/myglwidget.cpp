@@ -429,3 +429,12 @@ void MyGLWidget::goDown()
 {
     game->faireDescendre();
 }
+
+void MyGLWidget::regame()
+{
+
+    if(game->testerGameOver()){
+        delete(game);
+        game = new Jeu();
+    }
+}

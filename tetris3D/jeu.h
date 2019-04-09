@@ -82,18 +82,22 @@ public:
      void allerADroite();
 
      /*  Role : Tester si la pièce peut bouger dans la direction du bas
-         Entrée : un vecteur de vecteur qui correspond à la pièce actuelle avec sa rotation actuelle, un tableau d'entiers qui correspondent à la position de la pièce dans la grille
+         Entrée : un vecteur de vecteur qui correspond à la pièce actuelle avec sa rotation actuelle, un tableau d'entiers
+                 qui correspondent à la position de la pièce dans la grille
          Sortie :un booléen qui correspond à true s'il peut descendre et false s'il ne peut pas */
      bool peutDescendre(const std::vector<std::vector<int>>& shape,int pos[2]);
 
      /*  Role : Vérifier si la pièce peut bouger dans une direction indiquée
-         Entrée : un vecteur de vecteur qui correspond à la pièce actuelle avec sa rotation actuelle, un tableau d'entiers qui correspondent à la position de la pièce dans la grille
-         un offset en x qui permet de savoir si la pièce peut se déplacer dans la direction en x indiqué par l'offset (exemple : aller à gauche = offset négatif de -1)
+         Entrée : un vecteur de vecteur qui correspond à la pièce actuelle avec sa rotation actuelle, un tableau d'entiers
+                   qui correspondent à la position de la pièce dans la grille
+         un offset en x qui permet de savoir si la pièce peut se déplacer dans la direction en x indiqué par l'offset
+         (exemple : aller à gauche = offset négatif de -1)
          un offset en y qui permet de savoir si la pièce peut se déplacer dans la direction en y indiqué par l'offset
          Sortie :vide */
      bool peutBouger(const std::vector<std::vector<int>>& shape,int pos[2], int offx, int offy);
 
-     /*  Role : Vérifier que la pièce peut descendre, puis la faire descendre si c'est le cas et la fixer dans la grille si ce n'est pas le cas.
+     /*  Role : Vérifier que la pièce peut descendre, puis la faire descendre si c'est le cas
+                et la fixer dans la grille si ce n'est pas le cas.
       *  Vérification des lignes complètes et compter les points s'il y a suppression des lignes
          Entrée : vide
          Sortie :vide */
@@ -104,7 +108,8 @@ public:
     //Concernant la grille
      /*  Role : Récupérer la couleur de la pièce dans le format RGB, pour pouvoir la dessiner correctement
       *  Vérification des lignes complètes et compter les points s'il y a suppression des lignes
-         Entrée : un tableau d'entiers qui correspond aux couleurs de la pièce actuell, un entier qui correspond à la piece que l'on a actuellement
+         Entrée : un tableau d'entiers qui correspond aux couleurs de la pièce actuell, un entier qui correspond
+                  à la piece que l'on a actuellement
          Sortie :vide */
      void getCouleur(int couleur[3], int shape);
 
